@@ -1,3 +1,4 @@
+import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,7 +11,13 @@ class HomePage extends StatelessWidget {
         title: const Text('My Beer Ranking'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: ((context) => const UserProfile()),
+                ),
+              );
+            },
             icon: const Icon(Icons.person),
           ),
         ],
