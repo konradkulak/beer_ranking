@@ -37,6 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.6
   firebase_core: ^2.30.0
   cloud_firestore: ^4.17.0
+  firebase_auth: ^4.19.2
+  sign_in_with_apple: ^6.1.0
+  firebase_ui_auth: ^1.13.1
+  firebase_ui_firestore: ^1.6.2
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +68,11 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+
+fonts:
+    - family: SocialIcons
+      fonts:
+        - asset: packages/firebase_ui_auth/fonts/SocialIcons.ttf  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
