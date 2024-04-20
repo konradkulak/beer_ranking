@@ -15,4 +15,8 @@ class HomeRepository {
           ).toList(),
         );
   }
+
+  Future<void> deleteItem(String id) async {
+    await _homeRemoteDataSource.deleteItem(id);
+  }
 }

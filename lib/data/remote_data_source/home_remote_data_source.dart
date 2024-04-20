@@ -13,4 +13,8 @@ class HomeRemoteDataSource {
       }).toList();
     });
   }
+
+  Future<void> deleteItem(String id) async {
+    await FirebaseFirestore.instance.collection('items').doc(id).delete();
+  }
 }
