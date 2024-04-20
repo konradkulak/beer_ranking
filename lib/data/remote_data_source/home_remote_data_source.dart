@@ -15,6 +15,12 @@ class HomeRemoteDataSource {
   }
 
   Future<void> deleteItem(String id) async {
-    await FirebaseFirestore.instance.collection('items').doc(id).delete();
+    try {
+      await FirebaseFirestore.instance.collection('items').doc(id).delete();
+    } catch (error) {
+      throw Exception(
+        'Failed to delete item: ${error.toString()}',
+      );
+    }
   }
 }
