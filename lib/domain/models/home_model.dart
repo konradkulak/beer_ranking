@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class HomeModel {
   HomeModel({
     required this.name,
@@ -22,4 +24,8 @@ class HomeModel {
         date = map['date'],
         imageURL = map['image_url'] ?? '',
         id = map['id'] ?? '';
+
+  String dateFormatted() {
+    return DateFormat.MMMMEEEEd().format(date);
+  }
 }

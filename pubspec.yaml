@@ -43,6 +43,7 @@ dependencies:
   firebase_ui_firestore: ^1.6.2
   flutter_bloc: ^8.1.5
   bloc: ^8.1.4
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
