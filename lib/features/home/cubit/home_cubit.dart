@@ -18,9 +18,11 @@ class HomeCubit extends Cubit<HomeState> {
       HomeState(status: Status.loading),
     );
     _streamSubscription = _homeRepository.getHomeStream().listen((items) {
-      HomeState(
-        items: items,
-        status: Status.success,
+      emit(
+        HomeState(
+          items: items,
+          status: Status.success,
+        ),
       );
     }, onError: (error) {
       emit(
