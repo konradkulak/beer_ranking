@@ -6,7 +6,11 @@ class HomeRemoteDataSource {
         .collection('items')
         .snapshots()
         .map((snapshot) {
-      return snapshot.docs.map((doc) => doc.data()).toList();
+      return snapshot.docs.map((doc) {
+        Map<String, dynamic> data = doc.data();
+        data['date'] = (data['date'] as Timestamp).toDate();
+        return data;
+      }).toList();
     });
   }
 }
