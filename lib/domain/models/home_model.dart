@@ -8,9 +8,5 @@ class HomeModel {
   final String name;
   final String brewery;
   final double rating;
-
-  @override
-  String toString() {
-    return '$name, $brewery, Rating: $rating';
-  }
+  
 }
