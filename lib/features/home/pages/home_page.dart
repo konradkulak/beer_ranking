@@ -39,8 +39,24 @@ class _HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit(HomeRepository(HomeRemoteDataSource()))..start(),
-      child: BlocBuilder<HomeCubit, HomeState>(
+      create: (context) =>
+          HomeCubit(HomeRepository(HomeRemoteDataSource()))..start(),
+      child: BlocConsumer<HomeCubit, HomeState>(
+        listener: (context, state) {
+          if (state.deletionStatus == DeletionStatus.success) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Item deleted successfully'),
+              ),
+            );
+          } else if (state.deletionStatus == DeletionStatus.error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Unknown error'),
+              ),
+            );
+          }
+        },
         builder: (context, state) {
           switch (state.status) {
             case Status.initial:
@@ -51,7 +67,7 @@ class _HomePageBody extends StatelessWidget {
               );
             case Status.success:
               final items = state.items;
-              if (items.isEmpty) {
+              if (state.status == Status.success && items.isEmpty) {
                 return const Center(
                   child: Text('Add your first beer'),
                 );
