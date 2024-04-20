@@ -69,6 +69,14 @@ class _ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(item.name);
+    return Column(
+      children: [
+        Text(item.name),
+        Text(item.brewery),
+        Text(
+          item.rating.toString(),
+        ),
+      ],
+    );
   }
 }
