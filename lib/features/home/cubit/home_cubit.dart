@@ -36,7 +36,9 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> deleteItem(String id) async {
     emit(
-      HomeState(deletionStatus: DeletionStatus.loading), //add update list after deletion
+      HomeState(
+          deletionStatus:
+              DeletionStatus.loading), //add update list after deletion
     );
     try {
       await _homeRepository.deleteItem(id);

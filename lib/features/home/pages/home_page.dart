@@ -52,7 +52,7 @@ class _HomePageBody extends StatelessWidget {
           } else if (state.deletionStatus == DeletionStatus.error) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text('Unknown error'),
+                content: Text('Error'),
               ),
             );
           }
@@ -60,7 +60,9 @@ class _HomePageBody extends StatelessWidget {
         builder: (context, state) {
           switch (state.status) {
             case Status.initial:
-              return const Text('Initial state');
+              return const Center(
+                child: Text('Initial state'),
+              );
             case Status.loading:
               return const Center(
                 child: CircularProgressIndicator(),
@@ -75,8 +77,11 @@ class _HomePageBody extends StatelessWidget {
               return ListView(
                 children: [
                   for (final item in items)
-                    Container(
-                      padding: const EdgeInsets.all(8),
+                    Dismissible(
+                      key: ValueKey(item.id),
+                      onDismissed: (direction) {
+                        context.read<HomeCubit>().deleteItem(item.id);
+                      },
                       child: _ListItem(item: item),
                     ),
                 ],
@@ -99,14 +104,19 @@ class _ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(item.name),
-        Text(item.brewery),
-        Text(
-          item.rating.toString(),
-        ),
-      ],
+    return Container(
+      decoration: const BoxDecoration(
+        color: Color.fromARGB(29, 255, 193, 7),
+      ),
+      child: Column(
+        children: [
+          Text(item.name),
+          Text(item.brewery),
+          Text(
+            item.rating.toString(),
+          ),
+        ],
+      ),
     );
   }
 }
