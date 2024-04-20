@@ -34,6 +34,27 @@ class HomeCubit extends Cubit<HomeState> {
     });
   }
 
+  Future<void> deleteItem(String id) async {
+    emit(
+      HomeState(deletionStatus: DeletionStatus.loading), //add update list after deletion
+    );
+    try {
+      await _homeRepository.deleteItem(id);
+      emit(
+        HomeState(deletionStatus: DeletionStatus.success),
+      );
+    } catch (error) {
+      emit(
+        HomeState(
+          deletionStatus: DeletionStatus.error,
+          errorMessage: error.toString(),
+          items: state.items,
+          status: state.status,
+        ),
+      );
+    }
+  }
+
   @override
   Future<void> close() {
     _streamSubscription?.cancel();
