@@ -26,22 +26,49 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: BlocProvider(
-        create: (context) => HomeCubit(HomeRepository())..start(),
-        child: BlocBuilder<HomeCubit, HomeState>(
-          builder: (context, state) {
-            final items = state.items;
+      body: const _HomePageBody(),
+    );
+  }
+}
 
-            return ListView(
-              children: [
-                for (final item in items) ...[
-                  Text(item.name),
-                ],
-              ],
-            );
-          },
-        ),
+class _HomePageBody extends StatelessWidget {
+  const _HomePageBody();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => HomeCubit(HomeRepository())..start(),
+      child: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          final items = state.items;
+          if (items.isEmpty) {
+            return const Text('Add your first beer');
+          }
+
+          return ListView(
+            children: [
+              for (final item in items)
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: _ListItem(item: item),
+                ),
+            ],
+          );
+        },
       ),
     );
+  }
+}
+
+class _ListItem extends StatelessWidget {
+  const _ListItem({
+    required this.item,
+  });
+
+  final HomeModel item;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(item.name);
   }
 }

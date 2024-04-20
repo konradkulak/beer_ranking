@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:beer_ranking/domain/models/home_model.dart';
 import 'package:beer_ranking/domain/repositories/home_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+
 
 part 'home_state.dart';
 
