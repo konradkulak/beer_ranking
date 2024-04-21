@@ -8,16 +8,16 @@ import 'package:bloc/bloc.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit(this._homeRepository) : super(HomeState());
+  HomeCubit(this._beerRepository) : super(HomeState());
 
-  final BeerRepository _homeRepository;
+  final BeerRepository _beerRepository;
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
     emit(
       HomeState(status: Status.loading),
     );
-    _streamSubscription = _homeRepository.getBeerModel().listen((items) {
+    _streamSubscription = _beerRepository.getBeerModel().listen((items) {
       emit(
         HomeState(
           items: items,
@@ -36,7 +36,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> deleteItem(String id) async {
     try {
-      await _homeRepository.deleteItem(id);
+      await _beerRepository.deleteItem(id);
       List<BeerModel> updatedItems =
           state.items.where((item) => item.id != id).toList();
       emit(
