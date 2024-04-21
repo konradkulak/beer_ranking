@@ -8,7 +8,10 @@ class HomeRemoteDataSource {
         .map((snapshot) {
       return snapshot.docs.map((doc) {
         Map<String, dynamic> data = doc.data();
-        data['date'] = (data['date'] as Timestamp).toDate();
+        data['date'] = data['date'] != null
+            ? (data['date'] as Timestamp).toDate()
+            : DateTime.now();
+        data['id'] = doc.id;
         return data;
       }).toList();
     });
