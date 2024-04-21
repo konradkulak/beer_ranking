@@ -1,4 +1,5 @@
-import 'package:beer_ranking/domain/models/beer_model.dart';
+import 'package:beer_ranking/data/remote_data_source/beer_remote_data_source.dart';
+import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/cubit/add_cubit.dart';
 import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,11 @@ class AddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddCubit(),
+      create: (context) => AddCubit(
+        BeerRepository(
+          BeerRemoteDataSource(),
+        ),
+      ),
       child: BlocBuilder<AddCubit, AddState>(
         builder: (context, state) {
           return Scaffold(
