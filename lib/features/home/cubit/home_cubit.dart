@@ -35,23 +35,24 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> deleteItem(String id) async {
-    emit(
-      HomeState(
-          deletionStatus:
-              DeletionStatus.loading), //add update list after deletion
-    );
     try {
       await _homeRepository.deleteItem(id);
+      List<HomeModel> updatedItems =
+          state.items.where((item) => item.id != id).toList();
       emit(
-        HomeState(deletionStatus: DeletionStatus.success),
+        HomeState(
+          items: updatedItems,
+          status: Status.success,
+          deletionStatus: DeletionStatus.success,
+        ),
       );
     } catch (error) {
       emit(
         HomeState(
-          deletionStatus: DeletionStatus.error,
-          errorMessage: error.toString(),
           items: state.items,
           status: state.status,
+          deletionStatus: DeletionStatus.error,
+          errorMessage: error.toString(),
         ),
       );
     }

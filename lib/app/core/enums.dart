@@ -1,3 +1,3 @@
-enum Status { initial, loading, success, error}
+enum Status { initial, loading, success, error }
 
-enum DeletionStatus {loading, success, error}
+enum DeletionStatus { success, error }

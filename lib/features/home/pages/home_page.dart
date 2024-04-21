@@ -75,6 +75,7 @@ class _HomePageBody extends StatelessWidget {
                 );
               }
               return ListView(
+                padding: const EdgeInsets.all(8),
                 children: [
                   for (final item in items)
                     Dismissible(
