@@ -1,3 +1,4 @@
+import 'package:beer_ranking/app/core/enums.dart';
 import 'package:beer_ranking/data/remote_data_source/beer_remote_data_source.dart';
 import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/cubit/add_cubit.dart';
@@ -16,7 +17,27 @@ class AddPage extends StatelessWidget {
           BeerRemoteDataSource(),
         ),
       ),
-      child: BlocBuilder<AddCubit, AddState>(
+      child: BlocConsumer<AddCubit, AddState>(
+        listener: (context, state) {
+          if (state.addStatus == AddStatus.success) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Beer added successfully'),
+              ),
+            );
+            Navigator.of(context).pop();
+          } else if (state.addStatus == AddStatus.error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.errorMessage ?? 'Uknown error'),
+              ),
+            );
+          } else if (state.addStatus == AddStatus.loading) {
+            const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
