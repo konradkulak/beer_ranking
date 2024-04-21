@@ -8,7 +8,7 @@ class HomeState {
     this.errorMessage,
   });
 
-  final List<HomeModel> items;
+  final List<BeerModel> items;
   final Status status;
   final DeletionStatus? deletionStatus;
   final String? errorMessage;

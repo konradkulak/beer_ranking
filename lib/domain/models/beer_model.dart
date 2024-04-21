@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
-class HomeModel {
-  HomeModel({
+class BeerModel {
+  BeerModel({
     required this.name,
     required this.brewery,
     required this.rating,
@@ -17,7 +17,7 @@ class HomeModel {
   final String imageURL;
   final String id;
 
-  HomeModel.fromMap(Map<String, dynamic> map)
+  BeerModel.fromMap(Map<String, dynamic> map)
       : name = map['name'] ?? 'Unknown',
         brewery = map['brewery'] ?? 'Unknown',
         rating = map['rating']?.toDouble() ?? 0.0,

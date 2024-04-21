@@ -1,7 +1,7 @@
 import 'package:beer_ranking/app/core/enums.dart';
-import 'package:beer_ranking/data/remote_data_source/home_remote_data_source.dart';
-import 'package:beer_ranking/domain/models/home_model.dart';
-import 'package:beer_ranking/domain/repositories/home_repository.dart';
+import 'package:beer_ranking/data/remote_data_source/beer_remote_data_source.dart';
+import 'package:beer_ranking/domain/models/beer_model.dart';
+import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/pages/add_page.dart';
 import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
 import 'package:beer_ranking/features/home/cubit/home_cubit.dart';
@@ -52,7 +52,7 @@ class _HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          HomeCubit(HomeRepository(HomeRemoteDataSource()))..start(),
+          HomeCubit(BeerRepository(BeerRemoteDataSource()))..start(),
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state.deletionStatus == DeletionStatus.success) {
@@ -113,7 +113,7 @@ class _ListItem extends StatelessWidget {
     required this.item,
   });
 
-  final HomeModel item;
+  final BeerModel item;
 
   @override
   Widget build(BuildContext context) {

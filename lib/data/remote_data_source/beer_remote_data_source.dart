@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class HomeRemoteDataSource {
-  Stream<List<Map<String, dynamic>>> getHomeStream() {
+class BeerRemoteDataSource {
+  Stream<List<Map<String, dynamic>>> getBeerStream() {
     return FirebaseFirestore.instance
         .collection('items')
         .snapshots()
