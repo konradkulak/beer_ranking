@@ -2,6 +2,7 @@ import 'package:beer_ranking/app/core/enums.dart';
 import 'package:beer_ranking/data/remote_data_source/home_remote_data_source.dart';
 import 'package:beer_ranking/domain/models/home_model.dart';
 import 'package:beer_ranking/domain/repositories/home_repository.dart';
+import 'package:beer_ranking/features/add/pages/add_page.dart';
 import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
 import 'package:beer_ranking/features/home/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
@@ -29,15 +30,17 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: const _HomePageBody(),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => AddPage(),
-            fullscreenDialog: true,
-          ),
-        );
-        child: const Icon(Icons.add);
-      }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const AddPage(),
+              fullscreenDialog: true,
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
@@ -116,7 +119,7 @@ class _ListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color.fromARGB(29, 255, 193, 7),
+        color: Color.fromARGB(120, 195, 139, 213),
       ),
       child: Column(
         children: [
