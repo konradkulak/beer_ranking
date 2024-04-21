@@ -19,4 +19,8 @@ class BeerRepository {
   Future<void> deleteItem(String id) async {
     await _beerRemoteDataSource.deleteItem(id);
   }
+
+  Future<void> addItem(BeerModel beer) async {
+    await _beerRemoteDataSource.addItem(beer);
+  }
 }

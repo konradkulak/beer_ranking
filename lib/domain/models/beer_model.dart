@@ -25,6 +25,16 @@ class BeerModel {
         imageURL = map['image_url'] ?? '',
         id = map['id'] ?? '';
 
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'brewery': brewery,
+      'rating': rating,
+      'date': date,
+      'image_url': imageURL,
+    };
+  }
+
   String dateFormatted() {
     return DateFormat.MMMMEEEEd().format(date);
   }

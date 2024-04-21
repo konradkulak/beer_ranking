@@ -1,3 +1,4 @@
+import 'package:beer_ranking/domain/models/beer_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BeerRemoteDataSource {
@@ -23,6 +24,16 @@ class BeerRemoteDataSource {
     } catch (error) {
       throw Exception(
         'Failed to delete item: ${error.toString()}',
+      );
+    }
+  }
+
+  Future<void> addItem(BeerModel beer) async {
+    try {
+      await FirebaseFirestore.instance.collection('items').add(beer.toMap());
+    } catch (error) {
+      throw Exception(
+        'Failed to add item: ${error.toString()}',
       );
     }
   }
