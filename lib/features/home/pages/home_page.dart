@@ -29,6 +29,15 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: const _HomePageBody(),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => AddPage(),
+            fullscreenDialog: true,
+          ),
+        );
+        child: const Icon(Icons.add);
+      }),
     );
   }
 }
