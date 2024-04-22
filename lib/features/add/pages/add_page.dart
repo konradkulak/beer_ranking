@@ -5,6 +5,7 @@ import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/cubit/add_cubit.dart';
 import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddPage extends StatelessWidget {
@@ -84,7 +85,7 @@ class _AddPageBodyState extends State<_AddPageBody> {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
+        child: ListView(
           children: [
             Form(
               key: _formKey,
