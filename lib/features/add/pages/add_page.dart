@@ -1,5 +1,6 @@
 import 'package:beer_ranking/app/core/enums.dart';
 import 'package:beer_ranking/data/remote_data_source/beer_remote_data_source.dart';
+import 'package:beer_ranking/domain/models/beer_model.dart';
 import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/cubit/add_cubit.dart';
 import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
@@ -33,6 +34,7 @@ class AddPage extends StatelessWidget {
               ),
             );
           } else if (state.addStatus == AddStatus.loading) {
+            //to be checked later
             const Center(
               child: CircularProgressIndicator(),
             );
@@ -63,16 +65,110 @@ class AddPage extends StatelessWidget {
   }
 }
 
-class _AddPageBody extends StatelessWidget {
+class _AddPageBody extends StatefulWidget {
   const _AddPageBody();
+  @override
+  State<_AddPageBody> createState() => _AddPageBodyState();
+}
+
+class _AddPageBodyState extends State<_AddPageBody> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _breweryController = TextEditingController();
+  final TextEditingController _imageURLController = TextEditingController();
+  double _rating = 3.0;
+  DateTime _dateSelected = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        children: [
-          TextField(),
-        ],
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            Form(
+              key: _formKey,
+              child: TextField(
+                controller: _nameController,
+                decoration: const InputDecoration(
+                  labelText: 'Beer',
+                  hintText: 'PunkIPA',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: _breweryController,
+              decoration: const InputDecoration(
+                labelText: 'Brewery',
+                hintText: 'BrewDog',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Slider(
+              value: _rating,
+              min: 0.0,
+              max: 6.0,
+              divisions: 12,
+              label: _rating.toString(),
+              onChanged: (value) {
+                setState(
+                  () {
+                    _rating = value;
+                  },
+                );
+              },
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: _imageURLController,
+              decoration: const InputDecoration(
+                labelText: 'Image URL',
+                hintText: 'https://...',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 10),
+            IconButton(
+              onPressed: () async {
+                final DateTime? picked = await showDatePicker(
+                  context: context,
+                  firstDate: DateTime(1990),
+                  lastDate: DateTime(2030),
+                );
+                if (picked != null && picked != _dateSelected) {
+                  setState(
+                    () {
+                      _dateSelected = picked;
+                    },
+                  );
+                }
+              },
+              icon: const Icon(
+                Icons.calendar_today,
+                size: 80,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  final beer = BeerModel(
+                      name: _nameController.text,
+                      brewery: _breweryController.text,
+                      rating: _rating,
+                      date: _dateSelected,
+                      imageURL: _imageURLController.text,
+                      id: '');
+
+                  context.read<AddCubit>().addItem(beer);
+                }
+              },
+              child: const Text('Add Your Beer'),
+            ),
+          ],
+        ),
       ),
     );
   }
