@@ -78,7 +78,7 @@ class _AddPageBodyState extends State<_AddPageBody> {
   final TextEditingController _breweryController = TextEditingController();
   final TextEditingController _imageURLController = TextEditingController();
   double _rating = 3.0;
-  DateTime? _dateSelected;
+  DateTime? _dateSelector;
 
   @override
   Widget build(BuildContext context) {
@@ -136,33 +136,33 @@ class _AddPageBodyState extends State<_AddPageBody> {
               onPressed: () async {
                 final DateTime? picked = await showDatePicker(
                   context: context,
-                  initialDate: _dateSelected ?? DateTime.now(),
+                  initialDate: _dateSelector ?? DateTime.now(),
                   firstDate: DateTime(1990),
                   lastDate: DateTime(2030),
                 );
-                if (picked != null && picked != _dateSelected) {
+                if (picked != null && picked != _dateSelector) {
                   setState(
                     () {
-                      _dateSelected = picked;
+                      _dateSelector = picked;
                     },
                   );
                 }
               },
               child: Text(
-                _dateSelected == null
+                _dateSelector == null
                     ? 'Choose date'
-                    : DateFormat.yMMMEd().format(_dateSelected!),
+                    : DateFormat.yMMMEd().format(_dateSelector!),
               ),
             ),
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  DateTime _date = _dateSelected ?? DateTime.now();
+                  DateTime dateSelected = _dateSelector ?? DateTime.now();
                   final beer = BeerModel(
                       name: _nameController.text,
                       brewery: _breweryController.text,
                       rating: _rating,
-                      date: _date,
+                      date: dateSelected,
                       imageURL: _imageURLController.text,
                       id: '');
 
