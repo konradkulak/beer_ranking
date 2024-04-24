@@ -34,14 +34,14 @@ class AddPage extends StatelessWidget {
                 content: Text(state.errorMessage ?? 'Uknown error'),
               ),
             );
-          } else if (state.addStatus == AddStatus.loading) {
-            //to be checked later
-            const Center(
-              child: CircularProgressIndicator(),
-            );
           }
         },
         builder: (context, state) {
+          if (state.addStatus == AddStatus.loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
           return Scaffold(
             appBar: AppBar(
               title: const Text('Add Your Beer'),
