@@ -1,12 +1,7 @@
-import 'package:beer_ranking/app/core/enums.dart';
-import 'package:beer_ranking/data/remote_data_source/beer_remote_data_source.dart';
 import 'package:beer_ranking/domain/models/beer_model.dart';
-import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/pages/add_page.dart';
 import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
-import 'package:beer_ranking/features/home/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InfoPage extends StatelessWidget {
   const InfoPage({super.key, required this.beer});
@@ -54,6 +49,47 @@ class _InfoPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(beer.name);
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            child: Text(beer.name),
+          ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            child: Text(beer.brewery),
+          ),
+          Row(
+            children: [
+              Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(beer.rating.toString()),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(beer.dateFormatted()),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 20,
+                    horizontal: 30,
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    child: Image.network(beer.imageURL),
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }

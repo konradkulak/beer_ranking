@@ -127,7 +127,7 @@ class _AddPageBodyState extends State<_AddPageBody> {
               controller: _imageURLController,
               decoration: const InputDecoration(
                 labelText: 'Image URL',
-                hintText: 'https://...',
+                hintText: 'https://....jpg',
                 border: OutlineInputBorder(),
               ),
             ),
