@@ -5,8 +5,8 @@ import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/cubit/add_cubit.dart';
 import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class AddPage extends StatelessWidget {
   const AddPage({super.key});
@@ -78,7 +78,7 @@ class _AddPageBodyState extends State<_AddPageBody> {
   final TextEditingController _breweryController = TextEditingController();
   final TextEditingController _imageURLController = TextEditingController();
   double _rating = 3.0;
-  DateTime _dateSelected = DateTime.now();
+  DateTime? _dateSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -132,10 +132,11 @@ class _AddPageBodyState extends State<_AddPageBody> {
               ),
             ),
             const SizedBox(height: 10),
-            IconButton(
+            ElevatedButton(
               onPressed: () async {
                 final DateTime? picked = await showDatePicker(
                   context: context,
+                  initialDate: _dateSelected ?? DateTime.now(),
                   firstDate: DateTime(1990),
                   lastDate: DateTime(2030),
                 );
@@ -147,19 +148,21 @@ class _AddPageBodyState extends State<_AddPageBody> {
                   );
                 }
               },
-              icon: const Icon(
-                Icons.calendar_today,
-                size: 80,
+              child: Text(
+                _dateSelected == null
+                    ? 'Choose date'
+                    : DateFormat.yMMMEd().format(_dateSelected!),
               ),
             ),
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
+                  DateTime _date = _dateSelected ?? DateTime.now();
                   final beer = BeerModel(
                       name: _nameController.text,
                       brewery: _breweryController.text,
                       rating: _rating,
-                      date: _dateSelected,
+                      date: _date,
                       imageURL: _imageURLController.text,
                       id: '');
 
