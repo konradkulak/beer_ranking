@@ -126,18 +126,52 @@ class _ListItem extends StatelessWidget {
           ),
         );
       },
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(120, 195, 139, 213),
-        ),
-        child: Column(
-          children: [
-            Text(item.name),
-            Text(item.brewery),
-            Text(
-              item.rating.toString(),
-            ),
-          ],
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(120, 195, 139, 213),
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    item.rating.toString(),
+                    style: const TextStyle(
+                        fontSize: 40, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item.name,
+                        style: const TextStyle(
+                            fontSize: 26, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        item.brewery,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
