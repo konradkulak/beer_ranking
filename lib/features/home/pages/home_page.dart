@@ -117,18 +117,27 @@ class _ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(120, 195, 139, 213),
-      ),
-      child: Column(
-        children: [
-          Text(item.name),
-          Text(item.brewery),
-          Text(
-            item.rating.toString(),
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => InfoPage(id: item.id),
           ),
-        ],
+        );
+      },
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(120, 195, 139, 213),
+        ),
+        child: Column(
+          children: [
+            Text(item.name),
+            Text(item.brewery),
+            Text(
+              item.rating.toString(),
+            ),
+          ],
+        ),
       ),
     );
   }
