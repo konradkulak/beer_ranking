@@ -1,5 +1,5 @@
-class BeerPediaModel {
-  BeerPediaModel(
+class BeerpediaModel {
+  BeerpediaModel(
       {required this.beer,
       required this.brewery,
       required this.style,
