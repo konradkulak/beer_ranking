@@ -23,4 +23,8 @@ class BeerRepository {
   Future<void> addItem(BeerModel beer) async {
     await _beerRemoteDataSource.addItem(beer);
   }
+
+  Future<BeerModel> getBeerID(String id) async {
+   return await _beerRemoteDataSource.getBeerID(id);
+  }
 }

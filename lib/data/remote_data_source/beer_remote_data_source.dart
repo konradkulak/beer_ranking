@@ -37,4 +37,18 @@ class BeerRemoteDataSource {
       );
     }
   }
+
+  Future<BeerModel> getBeerID(String id) async {
+    try {
+      DocumentSnapshot doc = await FirebaseFirestore.instance.collection('items').doc(id).get();
+      if (doc.exists) {
+        return BeerModel.fromMap(
+            doc.data() as Map<String, dynamic>..['id'] = doc.id);
+      } else {
+        throw Exception('Beer not found');
+      }
+    } catch (error) {
+      throw Exception('Failed to load item: ${error.toString()}');
+    }
+  }
 }
