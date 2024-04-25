@@ -36,6 +36,6 @@ class BeerModel {
   }
 
   String dateFormatted() {
-    return DateFormat.MMMMEEEEd().format(date);
+    return DateFormat.yMMMMEEEEd().format(date);
   }
 }
