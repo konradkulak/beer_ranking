@@ -6,18 +6,28 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProfileScreen(
-      providers: [
-        EmailAuthProvider(),
-      ],
-      actions: [
-        SignedOutAction(
-          (context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('User Profile'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
             Navigator.of(context).pop();
           },
         ),
-      ],
-      avatarSize: 150,
+      ),
+      body: ProfileScreen(
+        providers: [
+          EmailAuthProvider(),
+        ],
+        actions: [
+          SignedOutAction(
+            (context) {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
     );
   }
 }
