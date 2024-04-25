@@ -40,10 +40,15 @@ class BeerRemoteDataSource {
 
   Future<BeerModel> getBeerID(String id) async {
     try {
-      DocumentSnapshot doc = await FirebaseFirestore.instance.collection('items').doc(id).get();
+      DocumentSnapshot doc =
+          await FirebaseFirestore.instance.collection('items').doc(id).get();
       if (doc.exists) {
-        return BeerModel.fromMap(
-            doc.data() as Map<String, dynamic>..['id'] = doc.id);
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+        data['id'] = doc.id;
+        if (data['date'] is Timestamp) {
+          data['date'] = (data['date'] as Timestamp).toDate();
+        }
+        return BeerModel.fromMap(data);
       } else {
         throw Exception('Beer not found');
       }
