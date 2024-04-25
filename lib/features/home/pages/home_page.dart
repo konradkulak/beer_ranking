@@ -101,7 +101,7 @@ class _HomePageBody extends StatelessWidget {
                 ],
               );
             case Status.error:
-              return Text(state.errorMessage ?? 'Unknown error');
+              return Center(child: Text(state.errorMessage ?? 'Unknown error'));
           }
         },
       ),
@@ -122,7 +122,7 @@ class _ListItem extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => InfoPage(beer: item),
+            builder: (context) => InfoPage(beerID: item.id),
           ),
         );
       },
