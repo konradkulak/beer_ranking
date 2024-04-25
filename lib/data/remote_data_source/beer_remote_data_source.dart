@@ -5,6 +5,7 @@ class BeerRemoteDataSource {
   Stream<List<Map<String, dynamic>>> getBeerStream() {
     return FirebaseFirestore.instance
         .collection('items')
+        .orderBy('rating', descending: true)
         .snapshots()
         .map((snapshot) {
       return snapshot.docs.map((doc) {
