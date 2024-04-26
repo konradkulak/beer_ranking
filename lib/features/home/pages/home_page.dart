@@ -4,6 +4,7 @@ import 'package:beer_ranking/domain/models/beer_model.dart';
 import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/pages/add_page.dart';
 import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
+import 'package:beer_ranking/features/beerpedia/pages/beerpedia_page.dart';
 import 'package:beer_ranking/features/home/cubit/home_cubit.dart';
 import 'package:beer_ranking/features/info/pages/info_page.dart';
 import 'package:flutter/material.dart';
@@ -63,9 +64,10 @@ class _HomePageBody extends StatelessWidget {
               ),
             );
           } else if (state.deletionStatus == DeletionStatus.error) {
+            final errorMessage = state.errorMessage ?? 'Unknown error';
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Error'),
+              SnackBar(
+                content: Text(errorMessage),
               ),
             );
           }
