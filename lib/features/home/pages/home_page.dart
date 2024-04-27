@@ -31,7 +31,6 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: const _HomePageBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -42,6 +41,26 @@ class HomePage extends StatelessWidget {
           );
         },
         child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      body: Stack(
+        children: <Widget>[
+          const _HomePageBody(),
+          Positioned(
+            left: 30,
+            bottom: 30,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const BeerpediaPage(),
+                  ),
+                );
+              },
+              child: const Text('Beerpedia'),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -100,16 +119,6 @@ class _HomePageBody extends StatelessWidget {
                       },
                       child: _ListItem(item: item),
                     ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const BeerpediaPage(),
-                        ),
-                      );
-                    },
-                    child: const Text('Beerpedia'),
-                  ),
                 ],
               );
             case Status.error:
