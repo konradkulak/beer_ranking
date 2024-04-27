@@ -12,12 +12,12 @@ class BeerpediaCubit extends Cubit<BeerpediaState> {
   final BeerpediaRepository _beerpediaRepository;
 
   Future<void> getBeerpediaModel({
-    required String beer,
+    required String title,
   }) async {
     emit(BeerpediaState(beerpediaStatus: BeerpediaStatus.loading));
     try {
       final beerpediaModel =
-          await _beerpediaRepository.getBeerpediaModel(beer: beer);
+          await _beerpediaRepository.getBeerpediaModel(title: title);
       emit(
         BeerpediaState(
             beerpediaModel: beerpediaModel,
