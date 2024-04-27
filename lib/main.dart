@@ -62,18 +62,51 @@ class MyApp extends StatelessWidget {
               fontSize: 16,
             ),
           ),
-          labelLarge: GoogleFonts.raleway(
-            //ElevatedButton Text
-            textStyle: const TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-            ),
-          ),
+          //labelLarge: GoogleFonts.raleway(
+          //ElevatedButton Text
+          //textStyle: const TextStyle(
+          //color: Colors.black,
+          //fontSize: 10,
+          //),
+          //),
           labelMedium: GoogleFonts.raleway(
             //TextField hintText (implement manually)
             textStyle: const TextStyle(
               color: Colors.black,
               fontSize: 16,
+            ),
+          ),
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.brown,
+          foregroundColor: Colors.white,
+          elevation: 10,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.brown),
+            foregroundColor: MaterialStateProperty.all(Colors.white),
+            textStyle: MaterialStateProperty.all(
+              GoogleFonts.raleway(
+                textStyle: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  inherit: true,
+                ),
+              ),
+            ),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+            elevation: MaterialStateProperty.all(10),
+          ),
+        ),
+        iconButtonTheme: IconButtonThemeData(
+          style: ButtonStyle(
+            iconColor: MaterialStateProperty.all(
+              Colors.brown,
             ),
           ),
         ),
