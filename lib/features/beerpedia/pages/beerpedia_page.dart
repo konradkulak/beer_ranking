@@ -37,39 +37,39 @@ class BeerpediaPage extends StatelessWidget {
           }
           final beerpediaModel = state.beerpediaModel;
           return Scaffold(
-              appBar: AppBar(
-                title: const Text('Beerpedia'),
-                actions: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const UserProfile(),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.person),
+            appBar: AppBar(
+              title: const Text('Beerpedia'),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const UserProfile(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.person),
+                ),
+              ],
+            ),
+            body: Column(
+              children: [
+                if (beerpediaModel != null)
+                  _BeerpediaContent(
+                    beerpediaModel: beerpediaModel,
                   ),
-                ],
-              ),
-              body: Column(
-                children: [
-                  if (beerpediaModel != null)
-                    BeerpediaContent(
-                      beerpediaModel: beerpediaModel,
-                    ),
-                  const Text('s')
-                ],
-              ));
+                _BeerpediaSearch()
+              ],
+            ),
+          );
         },
       ),
     );
   }
 }
 
-class BeerpediaContent extends StatelessWidget {
-  const BeerpediaContent({
-    super.key,
+class _BeerpediaContent extends StatelessWidget {
+  const _BeerpediaContent({
     required this.beerpediaModel,
   });
 
@@ -77,14 +77,41 @@ class BeerpediaContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<BeerpediaCubit, BeerpediaState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            Text(beerpediaModel.title),
+            Text(beerpediaModel.alcohol),
+            Text(beerpediaModel.description),
+            Text(beerpediaModel.country),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _BeerpediaSearch extends StatelessWidget {
+  _BeerpediaSearch();
+
+  final _controller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(beerpediaModel.beer),
-        Text(beerpediaModel.brewery),
-        Text(beerpediaModel.style),
-        Text(beerpediaModel.country),
-        Text(beerpediaModel.state),
-        Text(beerpediaModel.score.toString()),
+        TextField(
+          controller: _controller,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            context
+                .read<BeerpediaCubit>()
+                .getBeerpediaModel(title: _controller.text);
+          },
+          child: const Text('Search'),
+        ),
       ],
     );
   }
