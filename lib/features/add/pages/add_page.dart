@@ -59,26 +59,7 @@ class AddPage extends StatelessWidget {
                 ),
               ],
             ),
-            body: Stack(
-              children: <Widget>[
-                const _AddPageBody(),
-                Positioned(
-                  left: 30,
-                  bottom: 30,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const BeerpediaPage(),
-                          fullscreenDialog: true,
-                        ),
-                      );
-                    },
-                    child: const Text('Beerpedia'),
-                  ),
-                )
-              ],
-            ),
+            body: const _AddPageBody(),
           );
         },
       ),
