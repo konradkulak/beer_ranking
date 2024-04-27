@@ -8,7 +8,6 @@ import 'package:beer_ranking/features/beerpedia/pages/beerpedia_page.dart';
 import 'package:beer_ranking/features/home/cubit/home_cubit.dart';
 import 'package:beer_ranking/features/info/pages/info_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
@@ -172,6 +171,7 @@ class _ListItem extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     item.rating.toString(),
+                    style: Theme.of(context).textTheme.headlineLarge,
                   ),
                 ),
               ),
@@ -183,6 +183,7 @@ class _ListItem extends StatelessWidget {
                     children: [
                       Text(
                         item.name,
+                        style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       Text(
                         item.brewery,

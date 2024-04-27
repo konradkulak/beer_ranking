@@ -128,6 +128,7 @@ class _BeerDetails extends StatelessWidget {
               padding: const EdgeInsets.all(5),
               child: Text(
                 beer.name,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
             Container(
@@ -145,6 +146,7 @@ class _BeerDetails extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   beer.rating.toString(),
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
             ),

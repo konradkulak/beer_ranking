@@ -103,6 +103,12 @@ class _BeerpediaSearch extends StatelessWidget {
       children: [
         TextField(
           controller: _controller,
+          decoration: InputDecoration(
+            labelText: 'Enter beer name',
+            hintText: 'Spring',
+            hintStyle: Theme.of(context).textTheme.labelMedium,
+            border: const OutlineInputBorder(),
+          ),
         ),
         ElevatedButton(
           onPressed: () {

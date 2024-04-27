@@ -4,7 +4,6 @@ import 'package:beer_ranking/domain/models/beer_model.dart';
 import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/cubit/add_cubit.dart';
 import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
-import 'package:beer_ranking/features/beerpedia/pages/beerpedia_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -92,20 +91,22 @@ class _AddPageBodyState extends State<_AddPageBody> {
               key: _formKey,
               child: TextField(
                 controller: _nameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Beer',
                   hintText: 'PunkIPA',
-                  border: OutlineInputBorder(),
+                  hintStyle: Theme.of(context).textTheme.labelMedium,
+                  border: const OutlineInputBorder(),
                 ),
               ),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: _breweryController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Brewery',
                 hintText: 'BrewDog',
-                border: OutlineInputBorder(),
+                hintStyle: Theme.of(context).textTheme.labelMedium,
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 10),
@@ -126,10 +127,11 @@ class _AddPageBodyState extends State<_AddPageBody> {
             const SizedBox(height: 10),
             TextField(
               controller: _imageURLController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Image URL',
                 hintText: 'https://....jpg',
-                border: OutlineInputBorder(),
+                hintStyle: Theme.of(context).textTheme.labelMedium,
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 10),
