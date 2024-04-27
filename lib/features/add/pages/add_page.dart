@@ -70,6 +70,7 @@ class AddPage extends StatelessWidget {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => const BeerpediaPage(),
+                          fullscreenDialog: true,
                         ),
                       );
                     },
