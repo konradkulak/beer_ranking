@@ -4,6 +4,7 @@ import 'package:beer_ranking/domain/models/beer_model.dart';
 import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/cubit/add_cubit.dart';
 import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
+import 'package:beer_ranking/features/beerpedia/pages/beerpedia_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -58,7 +59,25 @@ class AddPage extends StatelessWidget {
                 ),
               ],
             ),
-            body: const _AddPageBody(),
+            body: Stack(
+              children: <Widget>[
+                const _AddPageBody(),
+                Positioned(
+                  left: 30,
+                  bottom: 30,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const BeerpediaPage(),
+                        ),
+                      );
+                    },
+                    child: const Text('Beerpedia'),
+                  ),
+                )
+              ],
+            ),
           );
         },
       ),
