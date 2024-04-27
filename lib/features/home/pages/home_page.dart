@@ -100,6 +100,16 @@ class _HomePageBody extends StatelessWidget {
                       },
                       child: _ListItem(item: item),
                     ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const BeerpediaPage(),
+                        ),
+                      );
+                    },
+                    child: const Text('Beerpedia'),
+                  ),
                 ],
               );
             case Status.error:
