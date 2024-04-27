@@ -31,22 +31,13 @@ class BeerpediaRemoteDataSource {
         if (filteredData.isNotEmpty) {
           return filteredData;
         } else {
-          print('No matching data found');
-          return null;
+          throw Exception('No matching data found');
         }
       } else {
-        print('Failed to load data: ${response.statusCode}');
-        return null;
+        throw Exception('Failed to load data: ${response.statusCode}');
       }
     } on DioException catch (error) {
-      print('DioException caught: ${error.message}');
-      if (error.response != null) {
-        print('Error data: ${error.response?.data}');
-      }
-      return null;
-    } catch (error) {
-      print('An unexpected error occurred: $error');
-      return null;
+      throw Exception('Network error: ${error.message}');
     }
   }
 }
