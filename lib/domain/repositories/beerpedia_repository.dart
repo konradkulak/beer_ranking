@@ -7,13 +7,19 @@ class BeerpediaRepository {
   final BeerpediaRemoteDataSource _beerpediaRemoteDataSource;
 
   Future<BeerpediaModel?> getBeerpediaModel({
-    required String beer,
+    required String title,
   }) async {
-    final json = await _beerpediaRemoteDataSource.getBeerpediaData(beer: beer);
+    final json = await _beerpediaRemoteDataSource.getBeerpediaData(title);
 
     if (json == null) {
       return null;
     }
-    return BeerpediaModel.fromJson(json);
+    Map<String, dynamic> data;
+    if (json.isNotEmpty) {
+      data = json.first as Map<String, dynamic>;
+    } else {
+      return null;
+    }
+    return BeerpediaModel.fromJson(data);
   }
 }
