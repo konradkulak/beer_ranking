@@ -4,6 +4,7 @@ import 'package:beer_ranking/domain/models/beer_model.dart';
 import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/pages/add_page.dart';
 import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
+import 'package:beer_ranking/features/beerpedia/pages/beerpedia_page.dart';
 import 'package:beer_ranking/features/info/cubit/info_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,6 @@ class InfoPage extends StatelessWidget {
           ),
         ],
       ),
-      body: _InfoPageBody(beerID: beerID),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -45,6 +45,31 @@ class InfoPage extends StatelessWidget {
           );
         },
         child: const Icon(Icons.add),
+      ),
+      body: Stack(
+        children: <Widget>[
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 30,
+                bottom: 30,
+              ),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const BeerpediaPage(),
+                      fullscreenDialog: true,
+                    ),
+                  );
+                },
+                child: const Text('Beerpedia'),
+              ),
+            ),
+          ),
+          _InfoPageBody(beerID: beerID),
+        ],
       ),
     );
   }
@@ -103,19 +128,12 @@ class _BeerDetails extends StatelessWidget {
               padding: const EdgeInsets.all(5),
               child: Text(
                 beer.name,
-                style: const TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                ),
               ),
             ),
             Container(
               padding: const EdgeInsets.all(5),
               child: Text(
                 beer.brewery,
-                style: const TextStyle(
-                  fontSize: 20,
-                ),
               ),
             ),
             Container(
@@ -127,8 +145,6 @@ class _BeerDetails extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   beer.rating.toString(),
-                  style: const TextStyle(
-                      fontSize: 40, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
