@@ -8,6 +8,7 @@ import 'package:beer_ranking/features/beerpedia/pages/beerpedia_page.dart';
 import 'package:beer_ranking/features/home/cubit/home_cubit.dart';
 import 'package:beer_ranking/features/info/pages/info_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
@@ -46,19 +47,24 @@ class HomePage extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           const _HomePageBody(),
-          Positioned(
-            left: 30,
-            bottom: 30,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const BeerpediaPage(),
-                    fullscreenDialog: true,
-                  ),
-                );
-              },
-              child: const Text('Beerpedia'),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 30,
+                bottom: 30,
+              ),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const BeerpediaPage(),
+                      fullscreenDialog: true,
+                    ),
+                  );
+                },
+                child: const Text('Beerpedia'),
+              ),
             ),
           )
         ],
@@ -153,7 +159,7 @@ class _ListItem extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(10),
           decoration: const BoxDecoration(
-            color: Color.fromARGB(120, 195, 139, 213),
+            color: Colors.yellow,
           ),
           child: Row(
             children: [
@@ -166,8 +172,6 @@ class _ListItem extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     item.rating.toString(),
-                    style: const TextStyle(
-                        fontSize: 40, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -179,14 +183,9 @@ class _ListItem extends StatelessWidget {
                     children: [
                       Text(
                         item.name,
-                        style: const TextStyle(
-                            fontSize: 26, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         item.brewery,
-                        style: const TextStyle(
-                          fontSize: 20,
-                        ),
                       ),
                     ],
                   ),
