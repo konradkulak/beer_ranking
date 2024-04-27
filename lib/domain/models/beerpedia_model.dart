@@ -1,24 +1,19 @@
 class BeerpediaModel {
-  BeerpediaModel(
-      {required this.beer,
-      required this.brewery,
-      required this.style,
-      required this.country,
-      required this.state,
-      required this.score});
+  BeerpediaModel({
+    required this.title,
+    required this.alcohol,
+    required this.description,
+    required this.country,
+  });
 
-  final String beer;
-  final String brewery;
-  final String style;
+  final String title;
+  final String alcohol;
+  final String description;
   final String country;
-  final String state;
-  final double score;
 
   BeerpediaModel.fromJson(Map<String, dynamic> json)
-      : beer = json['beer'],
-        brewery = json['brewery'],
-        style = json['style'],
-        country = json['country'],
-        state = json['state'],
-        score = json['score'] + 0.0;
+      : title = json['title'],
+        alcohol = json['alchool'],
+        description = json['description'],
+        country = json['country'];
 }
