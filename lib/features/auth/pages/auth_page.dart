@@ -45,9 +45,101 @@ class AuthPage extends StatelessWidget {
               ),
             );
           } else {
-            return const Scaffold();
+            return const Scaffold(
+              body: _AuthPageBody(),
+            );
           }
         },
+      ),
+    );
+  }
+}
+
+class _AuthPageBody extends StatefulWidget {
+  const _AuthPageBody();
+
+  @override
+  State<_AuthPageBody> createState() => _AuthPageBodyState();
+}
+
+class _AuthPageBodyState extends State<_AuthPageBody> {
+  AuthOptions _authOptions = AuthOptions.login;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Align(
+        alignment: Alignment.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              _authOptions == AuthOptions.login ? 'Sign in' : 'Register',
+            ),
+            Row(
+              children: [
+                Text(_authOptions == AuthOptions.login
+                    ? "Don't have an account?"
+                    : 'Already have an account?'),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      _authOptions = _authOptions == AuthOptions.login
+                          ? AuthOptions.register
+                          : AuthOptions.login;
+                    });
+                  },
+                  child: Text(
+                    _authOptions == AuthOptions.login ? 'Register' : 'Sign in',
+                  ),
+                ),
+              ],
+            ),
+            TextField(
+              controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                labelText: 'Email',
+                hintText: 'sample@sample.com',
+                hintStyle: Theme.of(context).textTheme.labelMedium,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+              ),
+            ),
+            TextField(
+              controller: _passwordController,
+              obscureText: true,
+              decoration: InputDecoration(
+                  labelText: 'Password',
+                  hintText: 'Password',
+                  hintStyle: Theme.of(context).textTheme.labelMedium,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                  )),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (_authOptions == AuthOptions.login) {
+                  context.read<AuthCubit>().signIn(
+                        _emailController.text,
+                        _passwordController.text,
+                      );
+                } else {
+                  context.read<AuthCubit>().register(
+                        _emailController.text,
+                        _passwordController.text,
+                      );
+                }
+              },
+              child: Text(
+                _authOptions == AuthOptions.login ? 'Sign in' : 'Register',
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
