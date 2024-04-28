@@ -138,21 +138,24 @@ class _BeerDetails extends StatelessWidget {
                 border: Border.all(),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Text(
                   beer.rating.toString(),
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 20.0,
-                horizontal: 30.0,
-              ),
+            AspectRatio(
+              aspectRatio: 6 / 7,
               child: Container(
-                padding: const EdgeInsets.all(10.0),
-                child: Image.network(beer.imageURL),
+                padding: const EdgeInsets.all(20.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16.0),
+                  child: Image.network(
+                    beer.imageURL,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
             Text(
