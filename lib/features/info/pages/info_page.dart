@@ -118,6 +118,9 @@ class _BeerDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ImageStatus imageStatus =
+        context.select((InfoCubit cubit) => cubit.state.imageStatus);
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -145,18 +148,9 @@ class _BeerDetails extends StatelessWidget {
                 ),
               ),
             ),
-            AspectRatio(
-              aspectRatio: 6 / 7,
-              child: Container(
-                padding: const EdgeInsets.all(20.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16.0),
-                  child: Image.network(
-                    beer.imageURL,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+            _ImageDisplay(
+              imageURL: beer.imageURL,
+              imageStatus: imageStatus,
             ),
             Text(
               beer.dateFormatted(),
@@ -166,4 +160,78 @@ class _BeerDetails extends StatelessWidget {
       ),
     );
   }
+}
+
+class _ImageDisplay extends StatelessWidget {
+  const _ImageDisplay({
+    required this.imageURL,
+    required this.imageStatus,
+  });
+
+  final String imageURL;
+  final ImageStatus imageStatus;
+
+  @override
+  Widget build(BuildContext context) {
+    ImageStatus imageStatus =
+        context.select((InfoCubit cubit) => cubit.state.imageStatus);
+
+    switch (imageStatus) {
+      case ImageStatus.missing:
+        return _buildEmptyImage();
+      case ImageStatus.malformed:
+        return _buildErrorImage();
+      case ImageStatus.valid:
+        return _buildValidImage(imageURL);
+    }
+  }
+}
+
+Widget _buildEmptyImage() {
+  return AspectRatio(
+    aspectRatio: 6 / 7,
+    child: Container(
+      padding: const EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: const Center(
+        child: Icon(
+          Icons.photo_camera,
+          size: 40,
+        ),
+      ),
+    ),
+  );
+}
+
+Widget _buildErrorImage() {
+  return AspectRatio(
+    aspectRatio: 6 / 7,
+    child: Container(
+      padding: const EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: const Center(child: Text('Image badly formatted')),
+    ),
+  );
+}
+
+Widget _buildValidImage(String url) {
+  return AspectRatio(
+    aspectRatio: 6 / 7,
+    child: Container(
+      padding: const EdgeInsets.all(20.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16.0),
+        child: Image.network(
+          url,
+          fit: BoxFit.cover,
+        ),
+      ),
+    ),
+  );
 }
