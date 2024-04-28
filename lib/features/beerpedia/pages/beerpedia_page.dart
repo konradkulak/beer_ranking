@@ -107,7 +107,9 @@ class _BeerpediaSearch extends StatelessWidget {
             labelText: 'Enter beer name',
             hintText: 'Spring',
             hintStyle: Theme.of(context).textTheme.labelMedium,
-            border: const OutlineInputBorder(),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
           ),
         ),
         ElevatedButton(

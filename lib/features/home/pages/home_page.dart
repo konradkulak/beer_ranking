@@ -156,15 +156,17 @@ class _ListItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: const BoxDecoration(
+          padding: const EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
             color: Colors.yellow,
+            borderRadius: BorderRadius.circular(16.0),
           ),
           child: Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
                   border: Border.all(),
                 ),
                 child: Padding(
@@ -177,7 +179,7 @@ class _ListItem extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

@@ -95,7 +95,9 @@ class _AddPageBodyState extends State<_AddPageBody> {
                   labelText: 'Beer',
                   hintText: 'PunkIPA',
                   hintStyle: Theme.of(context).textTheme.labelMedium,
-                  border: const OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
                 ),
               ),
             ),
@@ -106,7 +108,9 @@ class _AddPageBodyState extends State<_AddPageBody> {
                 labelText: 'Brewery',
                 hintText: 'BrewDog',
                 hintStyle: Theme.of(context).textTheme.labelMedium,
-                border: const OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
               ),
             ),
             const SizedBox(height: 10),
@@ -131,7 +135,9 @@ class _AddPageBodyState extends State<_AddPageBody> {
                 labelText: 'Image URL',
                 hintText: 'https://....jpg',
                 hintStyle: Theme.of(context).textTheme.labelMedium,
-                border: const OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
               ),
             ),
             const SizedBox(height: 10),

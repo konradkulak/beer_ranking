@@ -52,8 +52,8 @@ class InfoPage extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             child: Padding(
               padding: const EdgeInsets.only(
-                left: 30,
-                bottom: 30,
+                left: 30.0,
+                bottom: 30.0,
               ),
               child: ElevatedButton(
                 onPressed: () {
@@ -124,22 +124,17 @@ class _BeerDetails extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: const EdgeInsets.all(5),
-              child: Text(
-                beer.name,
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
+            Text(
+              beer.name,
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            Text(
+              beer.brewery,
             ),
             Container(
-              padding: const EdgeInsets.all(5),
-              child: Text(
-                beer.brewery,
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5.0),
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.0),
                 border: Border.all(),
               ),
               child: Padding(
@@ -150,20 +145,19 @@ class _BeerDetails extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(10),
-              child: Text(beer.dateFormatted()),
-            ),
             Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: 20,
-                horizontal: 30,
+                vertical: 20.0,
+                horizontal: 30.0,
               ),
               child: Container(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10.0),
                 child: Image.network(beer.imageURL),
               ),
-            )
+            ),
+            Text(
+              beer.dateFormatted(),
+            ),
           ],
         ),
       ),
