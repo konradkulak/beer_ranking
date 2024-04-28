@@ -164,17 +164,14 @@ class _ListItem extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(5.0),
+                padding: const EdgeInsets.all(12.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16.0),
                   border: Border.all(),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    item.rating.toString(),
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
+                child: Text(
+                  item.rating.toString(),
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
               Expanded(
