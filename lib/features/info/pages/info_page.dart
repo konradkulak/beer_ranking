@@ -124,41 +124,68 @@ class _BeerDetails extends StatelessWidget {
         context.select((InfoCubit cubit) => cubit.state.imageStatus);
 
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              beer.name,
-              style: Theme.of(context).textTheme.headlineMedium,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('beer:'),
+                Text(
+                  beer.name,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ],
             ),
-            Text(
-              beer.brewery,
-            ),
-            Container(
-              padding: const EdgeInsets.all(5.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.0),
-                border: Border.all(),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('brewery:'),
+                      Text(
+                        beer.brewery,
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
+              Container(
+                margin: const EdgeInsets.only(right: 15.0),
+                padding: const EdgeInsets.all(12.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
+                  border: Border.all(),
+                ),
                 child: Text(
                   beer.rating.toString(),
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
+            ],
+          ),
+          _ImageDisplay(
+            imageURL: beer.imageURL,
+            imageStatus: imageStatus,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  beer.dateFormatted(),
+                ),
+              ],
             ),
-            _ImageDisplay(
-              imageURL: beer.imageURL,
-              imageStatus: imageStatus,
-            ),
-            Text(
-              beer.dateFormatted(),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -196,7 +223,11 @@ Widget _buildEmptyImage() {
   return AspectRatio(
     aspectRatio: 6 / 7,
     child: Container(
-      padding: const EdgeInsets.all(20.0),
+      margin: const EdgeInsets.only(
+        left: 15,
+        right: 15,
+        top: 15,
+      ),
       decoration: BoxDecoration(
         color: Colors.grey[300],
         borderRadius: BorderRadius.circular(16),
@@ -215,7 +246,11 @@ Widget _buildErrorImage() {
   return AspectRatio(
     aspectRatio: 6 / 7,
     child: Container(
-      padding: const EdgeInsets.all(20.0),
+      margin: const EdgeInsets.only(
+        left: 15,
+        right: 15,
+        top: 15,
+      ),
       decoration: BoxDecoration(
         color: Colors.grey[300],
         borderRadius: BorderRadius.circular(16),
@@ -230,12 +265,16 @@ Widget _buildDataUriImage(String imageDataUri) {
   return AspectRatio(
     aspectRatio: 6 / 7,
     child: Container(
-      padding: const EdgeInsets.all(20.0),
+      margin: const EdgeInsets.only(
+        left: 15,
+        right: 15,
+        top: 15,
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16.0),
         child: Image.memory(
           base,
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
         ),
       ),
     ),
@@ -246,7 +285,11 @@ Widget _buildValidImage(String url) {
   return AspectRatio(
     aspectRatio: 6 / 7,
     child: Container(
-      padding: const EdgeInsets.all(20.0),
+      margin: const EdgeInsets.only(
+        left: 15,
+        right: 15,
+        top: 15,
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16.0),
         child: Image.network(
