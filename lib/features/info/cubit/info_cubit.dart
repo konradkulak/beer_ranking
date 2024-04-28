@@ -18,10 +18,17 @@ class InfoCubit extends Cubit<InfoState> {
     );
     try {
       final BeerModel beer = await _beerRepository.getBeerID(id);
+      ImageStatus imageStatus = ImageStatus.valid;
+      if (beer.imageURL.isEmpty) {
+        imageStatus = ImageStatus.missing;
+      } else if (!Uri.parse(beer.imageURL).isAbsolute) {
+        imageStatus = ImageStatus.malformed;
+      }
       emit(
         InfoState(
           beer: beer,
           infoStatus: InfoStatus.success,
+          imageStatus: imageStatus,
         ),
       );
     } catch (error) {
