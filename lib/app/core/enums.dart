@@ -11,3 +11,5 @@ enum ImageStatus { valid, missing, malformed, dataURI }
 enum BeerpediaStatus { initial, loading, success, error }
 
 enum AuthStatus { initial, loading, success, error }
+
+enum AuthOptions { login, register }
