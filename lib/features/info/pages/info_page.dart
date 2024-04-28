@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:beer_ranking/app/core/enums.dart';
 import 'package:beer_ranking/data/remote_data_source/beer_remote_data_source.dart';
 import 'package:beer_ranking/domain/models/beer_model.dart';
@@ -181,7 +183,10 @@ class _ImageDisplay extends StatelessWidget {
         return _buildEmptyImage();
       case ImageStatus.malformed:
         return _buildErrorImage();
+      case ImageStatus.dataURI:
+        return _buildDataUriImage(imageURL);
       case ImageStatus.valid:
+      default:
         return _buildValidImage(imageURL);
     }
   }
@@ -216,6 +221,23 @@ Widget _buildErrorImage() {
         borderRadius: BorderRadius.circular(16),
       ),
       child: const Center(child: Text('Image badly formatted')),
+    ),
+  );
+}
+
+Widget _buildDataUriImage(String imageDataUri) {
+  final base = base64.decode(imageDataUri.split(',').last);
+  return AspectRatio(
+    aspectRatio: 6 / 7,
+    child: Container(
+      padding: const EdgeInsets.all(20.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16.0),
+        child: Image.memory(
+          base,
+          fit: BoxFit.cover,
+        ),
+      ),
     ),
   );
 }

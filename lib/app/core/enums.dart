@@ -6,6 +6,6 @@ enum AddStatus { loading, success, error }
 
 enum InfoStatus { loading, success, error }
 
-enum ImageStatus { valid, missing, malformed }
+enum ImageStatus { valid, missing, malformed, dataURI }
 
 enum BeerpediaStatus { initial, loading, success, error }

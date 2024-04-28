@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:beer_ranking/app/core/enums.dart';
 import 'package:beer_ranking/domain/models/beer_model.dart';
 import 'package:beer_ranking/domain/repositories/beer_repository.dart';
@@ -19,10 +21,24 @@ class InfoCubit extends Cubit<InfoState> {
     try {
       final BeerModel beer = await _beerRepository.getBeerID(id);
       ImageStatus imageStatus = ImageStatus.valid;
+
       if (beer.imageURL.isEmpty) {
         imageStatus = ImageStatus.missing;
-      } else if (!Uri.parse(beer.imageURL).isAbsolute) {
-        imageStatus = ImageStatus.malformed;
+      } else {
+        try {
+          if (beer.imageURL.startsWith('data:image')) {
+            var parts = beer.imageURL.split(',');
+            if (parts.length > 1) {
+              base64.decode(parts[1]);
+              imageStatus = ImageStatus.dataURI;
+            } else {
+              Uri.parse(beer.imageURL);
+              imageStatus = ImageStatus.valid;
+            }
+          }
+        } catch (error) {
+          imageStatus = ImageStatus.malformed;
+        }
       }
       emit(
         InfoState(
@@ -36,6 +52,7 @@ class InfoCubit extends Cubit<InfoState> {
         InfoState(
           infoStatus: InfoStatus.error,
           errorMessage: error.toString(),
+          imageStatus: ImageStatus.malformed,
         ),
       );
     }
