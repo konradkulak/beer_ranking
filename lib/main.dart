@@ -25,10 +25,11 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           titleTextStyle: GoogleFonts.raleway(
             //AppBar
-            textStyle: const TextStyle(color: Colors.black, fontSize: 24),
-          ),
-          toolbarTextStyle: GoogleFonts.raleway(
-            textStyle: const TextStyle(color: Colors.blue),
+            textStyle: const TextStyle(
+              color: Colors.black,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         textTheme: TextTheme(
@@ -62,13 +63,6 @@ class MyApp extends StatelessWidget {
               fontSize: 16,
             ),
           ),
-          //labelLarge: GoogleFonts.raleway(
-          //ElevatedButton Text
-          //textStyle: const TextStyle(
-          //color: Colors.black,
-          //fontSize: 10,
-          //),
-          //),
           labelMedium: GoogleFonts.raleway(
             //TextField hintText (implement manually)
             textStyle: const TextStyle(
