@@ -49,6 +49,14 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          headlineSmall: GoogleFonts.raleway(
+            //brewery name (implement manually)
+            textStyle: const TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           bodyLarge: GoogleFonts.raleway(
             //TextField - text & label
             textStyle: const TextStyle(

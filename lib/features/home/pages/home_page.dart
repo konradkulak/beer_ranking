@@ -186,6 +186,7 @@ class _ListItem extends StatelessWidget {
                       ),
                       Text(
                         item.brewery,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ],
                   ),

@@ -151,6 +151,7 @@ class _BeerDetails extends StatelessWidget {
                       const Text('brewery:'),
                       Text(
                         beer.brewery,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ],
                   ),
