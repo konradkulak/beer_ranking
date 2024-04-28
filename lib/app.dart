@@ -1,4 +1,4 @@
-import 'package:beer_ranking/features/auth/pages/auth_gate.dart';
+import 'package:beer_ranking/features/auth/pages/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -103,7 +103,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const AuthGate(),
+      home: const AuthPage(),
     );
   }
 }
