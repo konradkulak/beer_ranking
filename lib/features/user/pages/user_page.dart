@@ -73,36 +73,36 @@ class _UserPageBody extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
+                context: context,
+                builder: (BuildContext dialogContext) {
+                  return BlocProvider.value(
+                    value: BlocProvider.of<UserCubit>(context),
+                    child: AlertDialog(
                       title: const Text('Delete Account'),
                       content: const Text(
                         'Are you sure you want to permanently delete your account?',
                       ),
                       actions: <Widget>[
-                        Row(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text('Cancel'),
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                                context.read<UserCubit>().deleteAccount();
-                              },
-                              child: const Text(
-                                'Confirm',
-                              ),
-                            ),
-                          ],
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(dialogContext).pop();
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            context.read<UserCubit>().deleteAccount();
+                          },
+                          child: const Text(
+                            'Confirm',
+                          ),
                         ),
                       ],
-                    );
-                  });
+                    ),
+                  );
+                },
+              );
             },
             child: const Text(
               'Delete account',
