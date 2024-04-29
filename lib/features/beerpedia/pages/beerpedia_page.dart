@@ -2,8 +2,8 @@ import 'package:beer_ranking/app/core/enums.dart';
 import 'package:beer_ranking/data/remote_data_source/beerpedia_remote_data_source.dart';
 import 'package:beer_ranking/domain/models/beerpedia_model.dart';
 import 'package:beer_ranking/domain/repositories/beerpedia_repository.dart';
-import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
 import 'package:beer_ranking/features/beerpedia/cubit/beerpedia_cubit.dart';
+import 'package:beer_ranking/features/user/pages/user_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,7 +44,7 @@ class BeerpediaPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const UserProfile(),
+                        builder: (context) => const UserPage(),
                       ),
                     );
                   },

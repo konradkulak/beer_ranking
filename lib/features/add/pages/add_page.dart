@@ -3,7 +3,7 @@ import 'package:beer_ranking/data/remote_data_source/beer_remote_data_source.dar
 import 'package:beer_ranking/domain/models/beer_model.dart';
 import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/cubit/add_cubit.dart';
-import 'package:beer_ranking/features/auth/pages/user_profile_page.dart';
+import 'package:beer_ranking/features/user/pages/user_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -50,7 +50,7 @@ class AddPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const UserProfile(),
+                        builder: (context) => const UserPage(),
                       ),
                     );
                   },
