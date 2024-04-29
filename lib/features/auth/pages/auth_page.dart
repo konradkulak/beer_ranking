@@ -87,11 +87,13 @@ class _AuthPageBodyState extends State<_AuthPageBody> {
                     : 'Already have an account?'),
                 TextButton(
                   onPressed: () {
-                    setState(() {
-                      _authOptions = _authOptions == AuthOptions.login
-                          ? AuthOptions.register
-                          : AuthOptions.login;
-                    });
+                    setState(
+                      () {
+                        _authOptions = _authOptions == AuthOptions.login
+                            ? AuthOptions.register
+                            : AuthOptions.login;
+                      },
+                    );
                   },
                   child: Text(
                     _authOptions == AuthOptions.login ? 'Register' : 'Sign in',

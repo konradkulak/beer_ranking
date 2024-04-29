@@ -43,7 +43,7 @@ class AuthCubit extends Cubit<AuthState> {
     );
     try {
       AuthModel authModel =
-          await _authRepository.signInWithEmailAndPassword(email, password);
+          await _authRepository.registerWithEmailAndPassword(email, password);
       emit(
         AuthState(
           authStatus: AuthStatus.success,
