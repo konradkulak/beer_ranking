@@ -34,13 +34,16 @@ class AuthPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (state.authStatus == AuthStatus.success) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => const HomePage(),
-                ),
-              );
-            });
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => const HomePage(),
+                  ),
+                  (Route<dynamic> route) => false,
+                );
+              },
+            );
             return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
