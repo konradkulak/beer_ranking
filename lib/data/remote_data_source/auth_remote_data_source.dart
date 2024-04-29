@@ -8,29 +8,47 @@ class AuthRemoteDataSource {
 
   Future<AuthModel> signInWithEmailAndPassword(
       String email, String password) async {
-    var result = await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
-    return AuthModel(
-      id: result.user!.uid,
-      email: result.user!.uid,
-    );
+    try {
+      var result = await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return AuthModel(
+        id: result.user!.uid,
+        email: result.user!.uid,
+      );
+    } catch (error) {
+      throw Exception('Failed to sign in: $error');
+    }
   }
 
   Future<AuthModel> registerWithEmailAndPassword(
       String email, String password) async {
-    var result = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
-    return AuthModel(
-      id: result.user!.uid,
-      email: result.user!.email!,
-    );
+    try {
+      var result = await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return AuthModel(
+        id: result.user!.uid,
+        email: result.user!.email!,
+      );
+    } catch (error) {
+      throw Exception('Failed to register: $error');
+    }
   }
 
   Future<void> signOut() async {
-    await _firebaseAuth.signOut();
+    try {
+      await _firebaseAuth.signOut();
+    } catch (error) {
+      throw Exception('Failed to sign out: $error');
+    }
   }
 
   Future<void> deleteAccount() async {
-    await _firebaseAuth.currentUser?.delete();
+    try {
+      await _firebaseAuth.currentUser?.delete();
+    } catch (error) {
+      throw Exception('Failed to delete an account: $error');
+    }
   }
 }
