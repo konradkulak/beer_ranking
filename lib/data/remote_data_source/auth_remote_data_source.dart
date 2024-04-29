@@ -25,4 +25,12 @@ class AuthRemoteDataSource {
       email: result.user!.email!,
     );
   }
+
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
+  }
+
+  Future<void> deleteAccount() async {
+    await _firebaseAuth.currentUser?.delete();
+  }
 }
