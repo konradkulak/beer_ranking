@@ -93,6 +93,11 @@ class _UserPageBody extends StatelessWidget {
                           onPressed: () {
                             Navigator.of(context).pop();
                             context.read<UserCubit>().deleteAccount();
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const AuthPage(),
+                              ),
+                            );
                           },
                           child: const Text(
                             'Confirm',
