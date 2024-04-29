@@ -13,3 +13,5 @@ enum BeerpediaStatus { initial, loading, success, error }
 enum AuthStatus { initial, loading, success, error }
 
 enum AuthOptions { login, register }
+
+enum UserStatus { initial, loading, success, error }
