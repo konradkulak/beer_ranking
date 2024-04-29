@@ -14,4 +14,12 @@ class AuthRepository {
       String email, String password) {
     return _authRemoteDataSource.registerWithEmailAndPassword(email, password);
   }
+
+  Future<void> signOut() async {
+    await _authRemoteDataSource.signOut();
+  }
+
+  Future<void> deleteAccount() async {
+    await _authRemoteDataSource.deleteAccount();
+  }
 }
