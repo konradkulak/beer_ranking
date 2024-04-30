@@ -57,63 +57,75 @@ class _UserPageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const AuthPage(),
-                ),
-              );
-              context.read<UserCubit>().signOut();
-            },
-            child: const Text('Sign out'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext dialogContext) {
-                  return BlocProvider.value(
-                    value: BlocProvider.of<UserCubit>(context),
-                    child: AlertDialog(
-                      title: const Text('Delete Account'),
-                      content: const Text(
-                        'Are you sure you want to permanently delete your account?',
-                      ),
-                      actions: <Widget>[
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(dialogContext).pop();
-                          },
-                          child: const Text('Cancel'),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                            context.read<UserCubit>().deleteAccount();
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const AuthPage(),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            'Confirm',
-                          ),
-                        ),
-                      ],
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 40,
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const AuthPage(),
                     ),
                   );
+                  context.read<UserCubit>().signOut();
                 },
-              );
-            },
-            child: const Text(
-              'Delete account',
+                child: const Text('Sign out'),
+              ),
             ),
-          ),
-        ],
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext dialogContext) {
+                      return BlocProvider.value(
+                        value: BlocProvider.of<UserCubit>(context),
+                        child: AlertDialog(
+                          title: const Text('Delete Account'),
+                          content: const Text(
+                            'Are you sure you want to permanently delete your account?',
+                          ),
+                          actions: <Widget>[
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(dialogContext).pop();
+                              },
+                              child: const Text('Cancel'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                context.read<UserCubit>().deleteAccount();
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => const AuthPage(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Confirm',
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: const Text(
+                  'Delete account',
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
