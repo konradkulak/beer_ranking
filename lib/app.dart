@@ -10,9 +10,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My Beer Ranking',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 242, 222, 208),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.brown,
+        ),
         useMaterial3: true,
         appBarTheme: AppBarTheme(
+          color: const Color.fromARGB(255, 242, 222, 208),
           titleTextStyle: GoogleFonts.raleway(
             //AppBar
             textStyle: const TextStyle(
