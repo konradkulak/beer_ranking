@@ -50,8 +50,8 @@ class HomePage extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             child: Padding(
               padding: const EdgeInsets.only(
-                left: 30,
-                bottom: 30,
+                left: 30.0,
+                bottom: 30.0,
               ),
               child: ElevatedButton(
                 onPressed: () {
@@ -115,11 +115,28 @@ class _HomePageBody extends StatelessWidget {
                 );
               }
               return ListView(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8.0),
                 children: [
                   for (final item in items)
                     Dismissible(
                       key: ValueKey(item.id),
+                      background: const DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                        ),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 15.0),
+                            child: Icon(
+                              Icons.delete,
+                            ),
+                          ),
+                        ),
+                      ),
+                      confirmDismiss: (direction) async {
+                        return direction == DismissDirection.endToStart;
+                      },
                       onDismissed: (direction) {
                         context.read<HomeCubit>().deleteItem(item.id);
                       },
