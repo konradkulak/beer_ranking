@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
             //AppBar
             textStyle: const TextStyle(
               color: Colors.black,
-              fontSize: 24,
+              fontSize: 24.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -27,23 +27,23 @@ class MyApp extends StatelessWidget {
             //beer rating (implement manually)
             textStyle: const TextStyle(
               color: Colors.black,
-              fontSize: 32,
+              fontSize: 32.0,
               fontWeight: FontWeight.bold,
             ),
           ),
           headlineMedium: GoogleFonts.raleway(
-            //beer name (implement manually)
+            //beer name, AuthPage title (implement manually)
             textStyle: const TextStyle(
               color: Colors.black,
-              fontSize: 24,
+              fontSize: 24.0,
               fontWeight: FontWeight.bold,
             ),
           ),
           headlineSmall: GoogleFonts.raleway(
-            //brewery name, beer name(beerpedia) (implement manually)
+            //brewery name, beer name(beerpedia)-(implement manually)
             textStyle: const TextStyle(
               color: Colors.black,
-              fontSize: 20,
+              fontSize: 20.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -51,21 +51,21 @@ class MyApp extends StatelessWidget {
             //TextField - text & label
             textStyle: const TextStyle(
               color: Colors.black,
-              fontSize: 16,
+              fontSize: 16.0,
             ),
           ),
           bodyMedium: GoogleFonts.raleway(
             //general Text
             textStyle: const TextStyle(
               color: Colors.black,
-              fontSize: 16,
+              fontSize: 16.0,
             ),
           ),
           bodySmall: GoogleFonts.raleway(
             //beerpedia search result body text
             textStyle: const TextStyle(
               color: Colors.black,
-              fontSize: 16,
+              fontSize: 16.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -73,14 +73,14 @@ class MyApp extends StatelessWidget {
             //TextField hintText (implement manually)
             textStyle: const TextStyle(
               color: Colors.black,
-              fontSize: 16,
+              fontSize: 16.0,
             ),
           ),
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: Colors.brown,
           foregroundColor: Colors.white,
-          elevation: 10,
+          elevation: 10.0,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
@@ -89,7 +89,7 @@ class MyApp extends StatelessWidget {
             textStyle: MaterialStateProperty.all(
               GoogleFonts.raleway(
                 textStyle: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.w500,
                   inherit: true,
                 ),
@@ -97,16 +97,32 @@ class MyApp extends StatelessWidget {
             ),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(16.0),
               ),
             ),
-            elevation: MaterialStateProperty.all(10),
+            elevation: MaterialStateProperty.all(10.0),
           ),
         ),
         iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
             iconColor: MaterialStateProperty.all(
               Colors.brown,
+            ),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.transparent),
+            foregroundColor: MaterialStateProperty.all(Colors.brown),
+            textStyle: MaterialStateProperty.all(
+              GoogleFonts.raleway(
+                textStyle: const TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.brown,
+                  inherit: true,
+                ),
+              ),
             ),
           ),
         ),
