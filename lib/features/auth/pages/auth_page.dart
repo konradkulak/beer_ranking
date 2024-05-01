@@ -21,11 +21,13 @@ class AuthPage extends StatelessWidget {
         listener: (context, state) {
           if (state.authStatus == AuthStatus.error) {
             final errorMessage = state.errorMessage ?? 'Unknown error';
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(errorMessage),
-              ),
-            );
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(errorMessage),
+                ),
+              );
+            });
           }
         },
         builder: (context, state) {
