@@ -35,7 +35,6 @@ class BeerpediaPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          final beerpediaModel = state.beerpediaModel;
           return Scaffold(
             appBar: AppBar(
               title: const Text('Beerpedia'),
@@ -52,15 +51,7 @@ class BeerpediaPage extends StatelessWidget {
                 ),
               ],
             ),
-            body: Column(
-              children: [
-                if (beerpediaModel != null)
-                  _BeerpediaContent(
-                    beerpediaModel: beerpediaModel,
-                  ),
-                _BeerpediaSearch()
-              ],
-            ),
+            body: _BeerpediaContent(beerpediaModel: state.beerpediaModel),
           );
         },
       ),
@@ -69,58 +60,69 @@ class BeerpediaPage extends StatelessWidget {
 }
 
 class _BeerpediaContent extends StatelessWidget {
-  const _BeerpediaContent({
+  _BeerpediaContent({
     required this.beerpediaModel,
   });
 
-  final BeerpediaModel beerpediaModel;
+  final BeerpediaModel? beerpediaModel;
+  final _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BeerpediaCubit, BeerpediaState>(
       builder: (context, state) {
-        return Column(
-          children: [
-            Text(beerpediaModel.title),
-            Text(beerpediaModel.alcohol),
-            Text(beerpediaModel.description),
-            Text(beerpediaModel.country),
-          ],
+        return Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ListView(
+            children: [
+              const Text('beer:'),
+              Text(
+                beerpediaModel?.title ?? '',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 10.0),
+              const Text('alcohol content:'),
+              Text(
+                beerpediaModel?.alcohol ?? '',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 10.0),
+              const Text('about:'),
+              Text(
+                beerpediaModel?.description ?? '',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 10.0),
+              const Text('brewed in:'),
+              Text(
+                beerpediaModel?.country ?? '',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 10.0),
+              TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                  labelText: 'Enter beer name',
+                  hintText: 'Sagres',
+                  hintStyle: Theme.of(context).textTheme.labelMedium,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  context
+                      .read<BeerpediaCubit>()
+                      .getBeerpediaModel(title: _controller.text);
+                },
+                child: const Text('Search'),
+              ),
+            ],
+          ),
         );
       },
-    );
-  }
-}
-
-class _BeerpediaSearch extends StatelessWidget {
-  _BeerpediaSearch();
-
-  final _controller = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextField(
-          controller: _controller,
-          decoration: InputDecoration(
-            labelText: 'Enter beer name',
-            hintText: 'Spring',
-            hintStyle: Theme.of(context).textTheme.labelMedium,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-          ),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            context
-                .read<BeerpediaCubit>()
-                .getBeerpediaModel(title: _controller.text);
-          },
-          child: const Text('Search'),
-        ),
-      ],
     );
   }
 }

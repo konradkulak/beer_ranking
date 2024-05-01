@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           headlineSmall: GoogleFonts.raleway(
-            //brewery name (implement manually)
+            //brewery name, beer name(beerpedia) (implement manually)
             textStyle: const TextStyle(
               color: Colors.black,
               fontSize: 20,
@@ -59,6 +59,14 @@ class MyApp extends StatelessWidget {
             textStyle: const TextStyle(
               color: Colors.black,
               fontSize: 16,
+            ),
+          ),
+          bodySmall: GoogleFonts.raleway(
+            //beerpedia search result body text
+            textStyle: const TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
           ),
           labelMedium: GoogleFonts.raleway(
