@@ -15,10 +15,16 @@ class AuthRemoteDataSource {
       );
       return AuthModel(
         id: result.user!.uid,
-        email: result.user!.uid,
+        email: result.user!.email ?? "no email",
       );
-    } catch (error) {
-      throw Exception('Failed to sign in: $error');
+    } on FirebaseAuthException catch (error) {
+      if (error.code == 'user=not-found') {
+        throw Exception('No user found for that email');
+      } else if (error.code == 'wrong-password') {
+        throw Exception('Wrong password');
+      } else {
+        throw Exception(error.message ?? 'Failed to sign in');
+      }
     }
   }
 
@@ -31,8 +37,12 @@ class AuthRemoteDataSource {
         id: result.user!.uid,
         email: result.user!.email!,
       );
-    } catch (error) {
-      throw Exception('Failed to register: $error');
+    } on FirebaseAuthException catch (error) {
+      if (error.code == 'email-already-in-use') {
+        throw Exception('The email is already in use by another account');
+      } else {
+        throw Exception(error.message ?? 'Failed to register');
+      }
     }
   }
 
