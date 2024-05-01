@@ -176,9 +176,9 @@ class _BeerDetails extends StatelessWidget {
             imageStatus: imageStatus,
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 15.0),
+            padding: const EdgeInsets.only(left: 20.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   beer.dateFormatted(),
