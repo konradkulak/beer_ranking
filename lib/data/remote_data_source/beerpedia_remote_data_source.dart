@@ -5,10 +5,14 @@ class BeerpediaRemoteDataSource {
 
   BeerpediaRemoteDataSource() {
     _dio = Dio(
-      BaseOptions(baseUrl: 'https://beers-list.p.rapidapi.com', headers: {
-        'X-RapidAPI-Key': 'ca6d4587c0msh615181cdbec7b83p1d0716jsn74c6e7a341c6',
-        'X-RapidAPI-Host': 'beers-list.p.rapidapi.com',
-      }),
+      BaseOptions(
+        baseUrl: 'https://beers-list.p.rapidapi.com',
+        headers: {
+          'X-RapidAPI-Key':
+              'ca6d4587c0msh615181cdbec7b83p1d0716jsn74c6e7a341c6',
+          'X-RapidAPI-Host': 'beers-list.p.rapidapi.com',
+        },
+      ),
     );
   }
 
@@ -37,7 +41,14 @@ class BeerpediaRemoteDataSource {
         throw Exception('Failed to load data: ${response.statusCode}');
       }
     } on DioException catch (error) {
-      throw Exception('Network error: ${error.message}');
+      if (error.response != null) {
+        throw Exception(
+            'Network error: ${error.response?.statusCode} ${error.message}');
+      } else {
+        throw Exception('Network error without response: ${error.message}');
+      }
+    } catch (error) {
+      throw Exception('Unexpected error: ${error.toString()}');
     }
   }
 }
