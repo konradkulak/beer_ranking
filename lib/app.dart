@@ -11,6 +11,9 @@ class MyApp extends StatelessWidget {
       title: 'My Beer Ranking',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 242, 222, 208),
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          circularTrackColor: Color.fromARGB(255, 242, 222, 208),
+        ),
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.brown,
         ),
