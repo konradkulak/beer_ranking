@@ -123,8 +123,6 @@ class _AuthPageBodyState extends State<_AuthPageBody> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  hintText: 'sample@sample.com',
-                  hintStyle: Theme.of(context).textTheme.labelMedium,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16.0),
                   ),
@@ -136,8 +134,6 @@ class _AuthPageBodyState extends State<_AuthPageBody> {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelText: 'Password',
-                    hintText: 'Password',
-                    hintStyle: Theme.of(context).textTheme.labelMedium,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16.0),
                     )),

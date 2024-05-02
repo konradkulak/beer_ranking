@@ -76,11 +76,11 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          labelMedium: GoogleFonts.raleway(
-            //TextField hintText (implement manually)
+          labelSmall: GoogleFonts.raleway(
+            //TextField comment BeerpediaPage (implement manually)
             textStyle: const TextStyle(
               color: Colors.black,
-              fontSize: 16.0,
+              fontSize: 12.0,
             ),
           ),
         ),
