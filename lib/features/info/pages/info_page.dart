@@ -91,8 +91,11 @@ class _InfoPageBody extends StatelessWidget {
         builder: (context, state) {
           switch (state.infoStatus) {
             case InfoStatus.loading:
-              return const Center(
-                child: CircularProgressIndicator(),
+              return Scaffold(
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                body: const Center(
+                  child: CircularProgressIndicator(),
+                ),
               );
             case InfoStatus.error:
               return Center(
@@ -230,7 +233,7 @@ Widget _buildEmptyImage() {
         top: 15,
       ),
       decoration: BoxDecoration(
-        color: Colors.grey[300],
+        color: const Color.fromARGB(255, 242, 222, 208),
         borderRadius: BorderRadius.circular(16),
       ),
       child: const Center(
@@ -253,7 +256,7 @@ Widget _buildErrorImage() {
         top: 15,
       ),
       decoration: BoxDecoration(
-        color: Colors.grey[300],
+        color: const Color.fromARGB(255, 242, 222, 208),
         borderRadius: BorderRadius.circular(16),
       ),
       child: const Center(child: Text('Image badly formatted')),
@@ -275,7 +278,7 @@ Widget _buildDataUriImage(String imageDataUri) {
         borderRadius: BorderRadius.circular(16.0),
         child: Image.memory(
           base,
-          fit: BoxFit.fill,
+          fit: BoxFit.contain,
         ),
       ),
     ),
@@ -295,7 +298,7 @@ Widget _buildValidImage(String url) {
         borderRadius: BorderRadius.circular(16.0),
         child: Image.network(
           url,
-          fit: BoxFit.cover,
+          fit: BoxFit.contain,
         ),
       ),
     ),
