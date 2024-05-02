@@ -12,6 +12,8 @@ class BeerpediaRemoteDataSource {
           'X-RapidAPI-Key': FlutterConfig.get('API_KEY'),
           'X-RapidAPI-Host': 'beers-list.p.rapidapi.com',
         },
+        receiveTimeout: const Duration(seconds: 30),
+        connectTimeout: const Duration(seconds: 30),
       ),
     );
   }
