@@ -1,5 +1,40 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_config/flutter_config.dart';
+
+class RetryOnConnectionChangeInterceptor extends Interceptor {
+  RetryOnConnectionChangeInterceptor(this.dio);
+
+  final Dio dio;
+
+  @override
+  Future onError(DioException err, ErrorInterceptorHandler handler) async {
+    if (_shouldRetry(err)) {
+      try {
+        return handler.resolve(
+          await dio.request(
+            err.requestOptions.path,
+            cancelToken: err.requestOptions.cancelToken,
+            data: err.requestOptions.data,
+            queryParameters: err.requestOptions.queryParameters,
+            onReceiveProgress: err.requestOptions.onReceiveProgress,
+          ),
+        );
+      } catch (e) {
+        return handler.next(err);
+      }
+    }
+    return handler.next(err);
+  }
+
+  bool _shouldRetry(DioException err) {
+    return err.type != DioExceptionType.connectionTimeout &&
+        err.type != DioExceptionType.receiveTimeout &&
+        err.error != null &&
+        err.error is SocketException;
+  }
+}
 
 class BeerpediaRemoteDataSource {
   late Dio _dio;
@@ -16,6 +51,7 @@ class BeerpediaRemoteDataSource {
         connectTimeout: const Duration(seconds: 30),
       ),
     );
+    _dio.interceptors.add(RetryOnConnectionChangeInterceptor(_dio));
   }
 
   String encodeQuery(String query) {
