@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_config/flutter_config.dart';
 
 class BeerpediaRemoteDataSource {
   late Dio _dio;
@@ -8,8 +9,7 @@ class BeerpediaRemoteDataSource {
       BaseOptions(
         baseUrl: 'https://beers-list.p.rapidapi.com',
         headers: {
-          'X-RapidAPI-Key':
-              'ca6d4587c0msh615181cdbec7b83p1d0716jsn74c6e7a341c6',
+          'X-RapidAPI-Key': FlutterConfig.get('API_KEY'),
           'X-RapidAPI-Host': 'beers-list.p.rapidapi.com',
         },
       ),
