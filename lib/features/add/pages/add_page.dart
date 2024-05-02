@@ -38,8 +38,11 @@ class AddPage extends StatelessWidget {
         },
         builder: (context, state) {
           if (state.addStatus == AddStatus.loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Scaffold(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              body: const Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           }
           return Scaffold(

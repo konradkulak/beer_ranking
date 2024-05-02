@@ -35,8 +35,11 @@ class UserPage extends StatelessWidget {
         },
         builder: (context, state) {
           if (state.userStatus == UserStatus.loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Scaffold(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              body: const Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           }
           return Scaffold(

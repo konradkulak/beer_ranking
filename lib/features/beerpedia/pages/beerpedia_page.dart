@@ -31,8 +31,11 @@ class BeerpediaPage extends StatelessWidget {
         },
         builder: (context, state) {
           if (state.beerpediaStatus == BeerpediaStatus.loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Scaffold(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              body: const Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           }
           return Scaffold(
@@ -103,7 +106,7 @@ class _BeerpediaContent extends StatelessWidget {
                 controller: _controller,
                 decoration: InputDecoration(
                   labelText: 'Enter beer name',
-                  hintText: 'Sagres',
+                  hintText: 'Weiss',
                   hintStyle: Theme.of(context).textTheme.labelMedium,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16.0),

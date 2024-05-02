@@ -32,8 +32,11 @@ class AuthPage extends StatelessWidget {
         },
         builder: (context, state) {
           if (state.authStatus == AuthStatus.loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Scaffold(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              body: const Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           } else if (state.authStatus == AuthStatus.success) {
             WidgetsBinding.instance.addPostFrameCallback(

@@ -104,8 +104,11 @@ class _HomePageBody extends StatelessWidget {
                 child: Text('Initial state'),
               );
             case Status.loading:
-              return const Center(
-                child: CircularProgressIndicator(),
+              return Scaffold(
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                body: const Center(
+                  child: CircularProgressIndicator(),
+                ),
               );
             case Status.success:
               final items = state.items;
@@ -145,7 +148,9 @@ class _HomePageBody extends StatelessWidget {
                 ],
               );
             case Status.error:
-              return Center(child: Text(state.errorMessage ?? 'Unknown error'));
+              return Center(
+                child: Text(state.errorMessage ?? 'Unknown error'),
+              );
           }
         },
       ),
