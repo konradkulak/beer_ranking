@@ -46,6 +46,9 @@ dependencies:
   google_fonts: ^6.2.1
   email_validator: ^2.1.17
   flutter_config: ^2.0.2
+
+flutter_config:
+  dotenv: .env
   
 
 dev_dependencies:

@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_config/flutter_config.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -43,38 +44,39 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBMp0_XQ74-RoRPlZ6gIYr7U_0zXC-aC5M',
-    appId: '1:503907765259:web:2a897d95c76b50d0c48b0e',
-    messagingSenderId: '503907765259',
-    projectId: 'beer-ranking-88',
-    authDomain: 'beer-ranking-88.firebaseapp.com',
-    storageBucket: 'beer-ranking-88.appspot.com',
+  static FirebaseOptions web = FirebaseOptions(
+    apiKey: FlutterConfig.get('FIREBASE_WEB_API_KEY'),
+    appId: FlutterConfig.get('FIREBASE_APP_ID_WEB'),
+    messagingSenderId: FlutterConfig.get('FIREBASE_MESSAGING_SENDER_ID_WEB'),
+    projectId: FlutterConfig.get('FIREBASE_PROJECT_ID'),
+    authDomain: FlutterConfig.get('FIREBASE_AUTH_DOMAIN'),
+    storageBucket: FlutterConfig.get('FIREBASE_STORAGE_BUCKET'),
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDEHfqTX4C1IE8KuqnYAHImnwddzraeEBo',
-    appId: '1:503907765259:android:d73001c94bc77194c48b0e',
-    messagingSenderId: '503907765259',
-    projectId: 'beer-ranking-88',
-    storageBucket: 'beer-ranking-88.appspot.com',
+  static FirebaseOptions android = FirebaseOptions(
+    apiKey: FlutterConfig.get('FIREBASE_ANDROID_API_KEY') ?? 'default_value',
+    appId: FlutterConfig.get('FIREBASE_APP_ID_ANDROID') ?? 'default_value',
+    messagingSenderId: FlutterConfig.get('FIREBASE_MESSAGING_SENDER_ID_WEB') ??
+        'default_value',
+    projectId: FlutterConfig.get('FIREBASE_PROJECT_ID') ?? 'default_value',
+    storageBucket: FlutterConfig.get('FIREBASE_STORAGE_BUCKET'),
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAPgYsEu5YpX0xPX_043wi2Jut0cUrrJqY',
-    appId: '1:503907765259:ios:a43e706c835908bac48b0e',
-    messagingSenderId: '503907765259',
-    projectId: 'beer-ranking-88',
-    storageBucket: 'beer-ranking-88.appspot.com',
+  static FirebaseOptions ios = FirebaseOptions(
+    apiKey: FlutterConfig.get('FIREBASE_IOS_API_KEY'),
+    appId: FlutterConfig.get('FIREBASE_APP_ID_IOS'),
+    messagingSenderId: FlutterConfig.get('FIREBASE_MESSAGING_SENDER_ID_WEB'),
+    projectId: FlutterConfig.get('FIREBASE_PROJECT_ID'),
+    storageBucket: FlutterConfig.get('FIREBASE_STORAGE_BUCKET'),
     iosBundleId: 'com.konradkulak.beerRanking',
   );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAPgYsEu5YpX0xPX_043wi2Jut0cUrrJqY',
-    appId: '1:503907765259:ios:ec5730b5bda7533bc48b0e',
-    messagingSenderId: '503907765259',
-    projectId: 'beer-ranking-88',
-    storageBucket: 'beer-ranking-88.appspot.com',
+  static FirebaseOptions macos = FirebaseOptions(
+    apiKey: FlutterConfig.get('FIREBASE_MACOS_API_KEY'),
+    appId: FlutterConfig.get('FIREBASE_APP_ID_MACOS'),
+    messagingSenderId: FlutterConfig.get('FIREBASE_MESSAGING_SENDER_ID_WEB'),
+    projectId: FlutterConfig.get('FIREBASE_PROJECT_ID'),
+    storageBucket: FlutterConfig.get('FIREBASE_STORAGE_BUCKET'),
     iosBundleId: 'com.konradkulak.beerRanking.RunnerTests',
   );
 }
