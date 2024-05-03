@@ -38,8 +38,11 @@ class AddPage extends StatelessWidget {
         },
         builder: (context, state) {
           if (state.addStatus == AddStatus.loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Scaffold(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              body: const Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           }
           return Scaffold(
@@ -93,8 +96,6 @@ class _AddPageBodyState extends State<_AddPageBody> {
                 controller: _nameController,
                 decoration: InputDecoration(
                   labelText: 'Beer',
-                  hintText: 'PunkIPA',
-                  hintStyle: Theme.of(context).textTheme.labelMedium,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16.0),
                   ),
@@ -106,8 +107,6 @@ class _AddPageBodyState extends State<_AddPageBody> {
               controller: _breweryController,
               decoration: InputDecoration(
                 labelText: 'Brewery',
-                hintText: 'BrewDog',
-                hintStyle: Theme.of(context).textTheme.labelMedium,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16.0),
                 ),
@@ -133,8 +132,6 @@ class _AddPageBodyState extends State<_AddPageBody> {
               controller: _imageURLController,
               decoration: InputDecoration(
                 labelText: 'Image URL',
-                hintText: 'https://....jpg',
-                hintStyle: Theme.of(context).textTheme.labelMedium,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16.0),
                 ),

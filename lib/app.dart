@@ -11,6 +11,9 @@ class MyApp extends StatelessWidget {
       title: 'My Beer Ranking',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 242, 222, 208),
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          circularTrackColor: Color.fromARGB(255, 242, 222, 208),
+        ),
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.brown,
         ),
@@ -73,11 +76,11 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          labelMedium: GoogleFonts.raleway(
-            //TextField hintText (implement manually)
+          labelSmall: GoogleFonts.raleway(
+            //TextField comment BeerpediaPage (implement manually)
             textStyle: const TextStyle(
               color: Colors.black,
-              fontSize: 16.0,
+              fontSize: 12.0,
             ),
           ),
         ),
