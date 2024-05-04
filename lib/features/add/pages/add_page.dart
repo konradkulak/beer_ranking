@@ -113,6 +113,7 @@ class _AddPageBodyState extends State<_AddPageBody> {
               ),
             ),
             const SizedBox(height: 10),
+            const Text('score:'),
             Slider(
               value: _rating,
               min: 0.0,
