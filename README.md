@@ -58,7 +58,7 @@ This sample account lets you view various features without the need to create a 
 ## App Preview
 
 <p align="center">
-<video src='assets/videos/demo.mp4' width=180><video/>
+<video src='assets/videos/demo.mp4' controls="controls" width=180><video/>
 </p>
 
 ## Contributing
