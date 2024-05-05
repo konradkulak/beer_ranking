@@ -55,6 +55,12 @@ To explore the app with pre-added beers and settings, use the following credenti
 
 This sample account lets you view various features without the need to create a new account. Feel free to add or delete beers as you explore the functionalities of the app.
 
+## App Preview
+
+<p align="center">
+<video src='assets/videos/demo.mp4' width=180><video/>
+</p>
+
 ## Contributing
 
 Contributions to "My Beer Ranking" are welcome! Whether it's bug fixes, new features, or improvements to existing features, your help is appreciated. Please feel free to fork the repository and submit pull requests. You can also open issues for bugs or new feature requests.
@@ -64,3 +70,4 @@ Contributions to "My Beer Ranking" are welcome! Whether it's bug fixes, new feat
 For more information, further questions, or if you would like to contribute to the project, please feel free to reach out.
 
 - **GitHub:** [konradkulak](https://github.com/konradkulak)
+
