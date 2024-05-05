@@ -78,25 +78,25 @@ class _BeerpediaContent extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: ListView(
             children: [
-              const Text('beer:'),
+              const Text('Beer:'),
               Text(
                 beerpediaModel?.title ?? '',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(height: 10.0),
-              const Text('alcohol content:'),
+              const Text('Alcohol content:'),
               Text(
                 beerpediaModel?.alcohol ?? '',
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(height: 10.0),
-              const Text('about:'),
+              const Text('About:'),
               Text(
                 beerpediaModel?.description ?? '',
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(height: 10.0),
-              const Text('brewed in:'),
+              const Text('Brewed in:'),
               Text(
                 beerpediaModel?.country ?? '',
                 style: Theme.of(context).textTheme.bodySmall,
