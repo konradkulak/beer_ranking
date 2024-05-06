@@ -11,7 +11,9 @@ Readme
 "Beer Ranking" is a mobile application designed to help beer enthusiasts keep track of their favorite beers. The app allows users to log different beers they have tried, along with their personal ratings, the date of tasting, and even adding beer images from the Internet. Additionally, the app is fitted with the Beerpedia search function, a comprehensive guide to get detailed info about hundreds of beers. It's the perfect digital companion for anyone passionate about discovering and enjoying new beers, enhancing their beer tasting experience by making it easy to recall.
 
 ## Current State
+
 **Note:** Currently, due to issues with `.env` configuration, the app is only operational on iOS devices. This limitation is part of ongoing development efforts. The application is a work in progress, and future updates will aim to resolve this limitation along with other enhancements.
+To try out Android version please checkout main branch on: https://github.com/konradkulak/beer_ranking/commit/b0436793da02beda62b139966e4f2c94364c686d
 
 ## Installation Steps
 
@@ -68,4 +70,5 @@ Contributions to "My Beer Ranking" are welcome! Whether it's bug fixes, new feat
 For more information, further questions, or if you would like to contribute to the project, please feel free to reach out.
 
 - **GitHub:** [konradkulak](https://github.com/konradkulak)
+- **Email:** konrad.kulak.95@gmail.com 
 
