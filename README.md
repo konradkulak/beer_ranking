@@ -57,9 +57,7 @@ This sample account lets you view various features without the need to create a 
 
 ## App Preview
 
-<p align="center">
-<video src='assets/videos/demo.mp4' controls="controls" width=180><video/>
-</p>
+https://github.com/konradkulak/beer_ranking/assets/147394446/0a030645-0352-47c2-ab34-8289852f09ef
 
 ## Contributing
 
