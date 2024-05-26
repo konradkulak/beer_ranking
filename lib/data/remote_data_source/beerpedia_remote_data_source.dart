@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_config/flutter_config.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class RetryOnConnectionChangeInterceptor extends Interceptor {
   RetryOnConnectionChangeInterceptor(this.dio);
@@ -44,7 +44,7 @@ class BeerpediaRemoteDataSource {
       BaseOptions(
         baseUrl: 'https://beers-list.p.rapidapi.com',
         headers: {
-          'X-RapidAPI-Key': FlutterConfig.get('API_KEY'),
+          'X-RapidAPI-Key': dotenv.env['API_KEY'],
           'X-RapidAPI-Host': 'beers-list.p.rapidapi.com',
         },
         receiveTimeout: const Duration(seconds: 30),
