@@ -3,7 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
-import 'package:flutter_config/flutter_config.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -45,38 +45,37 @@ class DefaultFirebaseOptions {
   }
 
   static FirebaseOptions web = FirebaseOptions(
-    apiKey: FlutterConfig.get('FIREBASE_WEB_API_KEY'),
-    appId: FlutterConfig.get('FIREBASE_APP_ID_WEB'),
-    messagingSenderId: FlutterConfig.get('FIREBASE_MESSAGING_SENDER_ID_WEB'),
-    projectId: FlutterConfig.get('FIREBASE_PROJECT_ID'),
-    authDomain: FlutterConfig.get('FIREBASE_AUTH_DOMAIN'),
-    storageBucket: FlutterConfig.get('FIREBASE_STORAGE_BUCKET'),
+    apiKey: dotenv.env['FIREBASE_WEB_API_KEY']!,
+    appId: dotenv.env['FIREBASE_APP_ID_WEB']!,
+    messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID_WEB']!,
+    projectId: dotenv.env['FIREBASE_PROJECT_ID']!,
+    authDomain: dotenv.env['FIREBASE_AUTH_DOMAIN']!,
+    storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET']!,
   );
 
   static FirebaseOptions android = FirebaseOptions(
-    apiKey: FlutterConfig.get('FIREBASE_ANDROID_API_KEY') ?? 'default_value',
-    appId: FlutterConfig.get('FIREBASE_APP_ID_ANDROID') ?? 'default_value',
-    messagingSenderId: FlutterConfig.get('FIREBASE_MESSAGING_SENDER_ID_WEB') ??
-        'default_value',
-    projectId: FlutterConfig.get('FIREBASE_PROJECT_ID') ?? 'default_value',
-    storageBucket: FlutterConfig.get('FIREBASE_STORAGE_BUCKET'),
+    apiKey: dotenv.env['FIREBASE_ANDROID_API_KEY']!,
+    appId: dotenv.env['FIREBASE_APP_ID_ANDROID']!,
+    messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID_WEB']!,
+    projectId: dotenv.env['FIREBASE_PROJECT_ID']!,
+    storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET']!,
   );
 
   static FirebaseOptions ios = FirebaseOptions(
-    apiKey: FlutterConfig.get('FIREBASE_IOS_API_KEY'),
-    appId: FlutterConfig.get('FIREBASE_APP_ID_IOS'),
-    messagingSenderId: FlutterConfig.get('FIREBASE_MESSAGING_SENDER_ID_WEB'),
-    projectId: FlutterConfig.get('FIREBASE_PROJECT_ID'),
-    storageBucket: FlutterConfig.get('FIREBASE_STORAGE_BUCKET'),
-    iosBundleId: 'com.konradkulak.beerRanking',
+    apiKey: dotenv.env['FIREBASE_IOS_API_KEY']!,
+    appId: dotenv.env['FIREBASE_APP_ID_IOS']!,
+    messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID_WEB']!,
+    projectId: dotenv.env['FIREBASE_PROJECT_ID']!,
+    storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET']!,
+    iosBundleId: dotenv.env['FIREBASE_IOS_BUNDLE_ID']!,
   );
 
   static FirebaseOptions macos = FirebaseOptions(
-    apiKey: FlutterConfig.get('FIREBASE_MACOS_API_KEY'),
-    appId: FlutterConfig.get('FIREBASE_APP_ID_MACOS'),
-    messagingSenderId: FlutterConfig.get('FIREBASE_MESSAGING_SENDER_ID_WEB'),
-    projectId: FlutterConfig.get('FIREBASE_PROJECT_ID'),
-    storageBucket: FlutterConfig.get('FIREBASE_STORAGE_BUCKET'),
-    iosBundleId: 'com.konradkulak.beerRanking.RunnerTests',
+    apiKey: dotenv.env['FIREBASE_MACOS_API_KEY']!,
+    appId: dotenv.env['FIREBASE_APP_ID_MACOS']!,
+    messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID_WEB']!,
+    projectId: dotenv.env['FIREBASE_PROJECT_ID']!,
+    storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET']!,
+    iosBundleId: dotenv.env['FIREBASE_IOS_BUNDLE_ID_MACOS']!,
   );
 }
