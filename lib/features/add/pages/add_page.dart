@@ -166,12 +166,13 @@ class _AddPageBodyState extends State<_AddPageBody> {
                 if (_formKey.currentState!.validate()) {
                   DateTime dateSelected = _dateSelector ?? DateTime.now();
                   final beer = BeerModel(
-                      name: _nameController.text,
-                      brewery: _breweryController.text,
-                      rating: _rating,
-                      date: dateSelected,
-                      imageURL: _imageURLController.text,
-                      id: '');
+                    _nameController.text,
+                    _breweryController.text,
+                    _rating,
+                    dateSelected,
+                    _imageURLController.text,
+                    '',
+                  );
 
                   context.read<AddCubit>().addItem(beer);
                 }
