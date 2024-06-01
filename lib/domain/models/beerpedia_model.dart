@@ -24,5 +24,5 @@ String _formatDescription(String description) {
 
 String _capitalizeFirstLetter(String country) {
   if (country.isEmpty) return country;
-  return country[0].toUpperCase() + country.substring(1).toLowerCase();
+  return country[0].toUpperCase() + country.substring(1);
 }
