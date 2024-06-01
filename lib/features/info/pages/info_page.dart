@@ -184,7 +184,7 @@ class _BeerDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  beer.dateFormatted(),
+                  beer.dateFormatted,
                 ),
               ],
             ),
