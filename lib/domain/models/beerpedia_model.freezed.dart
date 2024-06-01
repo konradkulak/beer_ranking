@@ -129,9 +129,9 @@ class __$$BeerpediaModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BeerpediaModelImpl implements _BeerpediaModel {
-  _$BeerpediaModelImpl(
-      this.title, this.alcohol, this.description, this.country);
+class _$BeerpediaModelImpl extends _BeerpediaModel {
+  _$BeerpediaModelImpl(this.title, this.alcohol, this.description, this.country)
+      : super._();
 
   factory _$BeerpediaModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BeerpediaModelImplFromJson(json);
@@ -182,9 +182,10 @@ class _$BeerpediaModelImpl implements _BeerpediaModel {
   }
 }
 
-abstract class _BeerpediaModel implements BeerpediaModel {
+abstract class _BeerpediaModel extends BeerpediaModel {
   factory _BeerpediaModel(final String title, final String alcohol,
       final String description, final String country) = _$BeerpediaModelImpl;
+  _BeerpediaModel._() : super._();
 
   factory _BeerpediaModel.fromJson(Map<String, dynamic> json) =
       _$BeerpediaModelImpl.fromJson;
