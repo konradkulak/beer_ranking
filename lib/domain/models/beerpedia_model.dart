@@ -12,10 +12,10 @@ class BeerpediaModel {
   final String country;
 
   BeerpediaModel.fromJson(Map<String, dynamic> json)
-      : title = json['title'],
-        alcohol = json['alchool'],
-        description = _formatDescription(json['description']),
-        country = _capitalizeFirstLetter(json['country']);
+      : title = json['title'] ?? '',
+        alcohol = json['alcohol'] ?? '',
+        description = _formatDescription(json['description'] ?? ''),
+        country = _capitalizeFirstLetter(json['country'] ?? '');
 }
 
 String _formatDescription(String description) {
