@@ -92,13 +92,13 @@ class _BeerpediaContent extends StatelessWidget {
               const SizedBox(height: 10.0),
               const Text('About:'),
               Text(
-                beerpediaModel?.description ?? '',
+                beerpediaModel?.formattedDescription ?? '',
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(height: 10.0),
               const Text('Brewed in:'),
               Text(
-                beerpediaModel?.country ?? '',
+                beerpediaModel?.capitalizedCountry ?? '',
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(height: 10.0),
