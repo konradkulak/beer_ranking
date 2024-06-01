@@ -10,7 +10,7 @@ class BeerRepository {
     return _beerRemoteDataSource.getBeerStream().map(
           (dataList) => dataList.map(
             (data) {
-              return BeerModel.fromMap(data);
+              return BeerModel.fromJson(data);
             },
           ).toList(),
         );
