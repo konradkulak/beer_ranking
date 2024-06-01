@@ -1,41 +1,24 @@
 import 'package:intl/intl.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class BeerModel {
-  BeerModel({
-    required this.name,
-    required this.brewery,
-    required this.rating,
-    required this.date,
-    required this.imageURL,
-    required this.id,
-  });
+part 'beer_model.freezed.dart';
+part 'beer_model.g.dart';
 
-  final String name;
-  final String brewery;
-  final double rating;
-  final DateTime date;
-  final String imageURL;
-  final String id;
+@freezed
+class BeerModel with _$BeerModel {
+  const BeerModel._();
+  factory BeerModel(
+  String name,
+  String brewery,
+  double rating,
+  DateTime date,
+  String imageURL,
+  String id,
+  ) = _BeerModel;
 
-  BeerModel.fromMap(Map<String, dynamic> map)
-      : name = map['name'] ?? 'Unknown',
-        brewery = map['brewery'] ?? 'Unknown',
-        rating = map['rating']?.toDouble() ?? 0.0,
-        date = map['date'],
-        imageURL = map['image_url'] ?? '',
-        id = map['id'] ?? '';
+  String get dateFormatted {
+    return DateFormat.yMMMMEEEEd().format(date);}
 
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-      'brewery': brewery,
-      'rating': rating,
-      'date': date,
-      'image_url': imageURL,
-    };
-  }
-
-  String dateFormatted() {
-    return DateFormat.yMMMMEEEEd().format(date);
-  }
+  factory BeerModel.fromJson(Map<String, dynamic> json) =>
+      _$BeerModelFromJson(json);
 }
