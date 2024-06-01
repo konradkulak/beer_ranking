@@ -55,7 +55,7 @@ class BeerRemoteDataSource {
           .collection('users')
           .doc(userID)
           .collection('items')
-          .add(beer.toMap());
+          .add(beer.toJson());
     } catch (error) {
       throw Exception(
         'Failed to add item: ${error.toString()}',
@@ -81,7 +81,7 @@ class BeerRemoteDataSource {
         if (data['date'] is Timestamp) {
           data['date'] = (data['date'] as Timestamp).toDate();
         }
-        return BeerModel.fromMap(data);
+        return BeerModel.fromJson(data);
       } else {
         throw Exception('Beer not found');
       }
