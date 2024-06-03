@@ -14,8 +14,8 @@ class AuthRemoteDataSource {
         password: password,
       );
       return AuthModel(
-        id: result.user!.uid,
-        email: result.user!.email ?? "no email",
+        result.user!.uid,
+        result.user!.email ?? "no email",
       );
     } on FirebaseAuthException catch (error) {
       if (error.code == 'user=not-found') {
@@ -34,8 +34,8 @@ class AuthRemoteDataSource {
       var result = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
       return AuthModel(
-        id: result.user!.uid,
-        email: result.user!.email!,
+        result.user!.uid,
+        result.user!.email!,
       );
     } on FirebaseAuthException catch (error) {
       if (error.code == 'email-already-in-use') {
