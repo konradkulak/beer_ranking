@@ -105,7 +105,7 @@ class _InfoPageBody extends StatelessWidget {
               return _BeerDetails(beer: state.beer!);
             case null:
               return const Center(
-                child: Text('No beer data avaiable'),
+                child: Text('No beer data available'),
               );
           }
         },
@@ -184,7 +184,7 @@ class _BeerDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  beer.dateFormatted(),
+                  beer.dateFormatted,
                 ),
               ],
             ),

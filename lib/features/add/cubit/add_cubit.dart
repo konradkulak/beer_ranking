@@ -12,11 +12,17 @@ class AddCubit extends Cubit<AddState> {
 
   Future<void> addItem(BeerModel beer) async {
     emit(
-      AddState(addStatus: AddStatus.loading),
+      AddState(
+        addStatus: AddStatus.loading,
+      ),
     );
     try {
       await _beerRepository.addItem(beer);
-      emit(AddState(addStatus: AddStatus.success));
+      emit(
+        AddState(
+          addStatus: AddStatus.success,
+        ),
+      );
     } catch (error) {
       emit(
         AddState(

@@ -15,7 +15,9 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> start() async {
     emit(
-      HomeState(status: Status.loading),
+      HomeState(
+        status: Status.loading,
+      ),
     );
     _streamSubscription = _beerRepository.getBeerModel().listen((items) {
       emit(
