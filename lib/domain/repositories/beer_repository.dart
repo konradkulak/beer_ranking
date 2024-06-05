@@ -7,13 +7,7 @@ class BeerRepository {
   final BeerRemoteDataSource _beerRemoteDataSource;
 
   Stream<List<BeerModel>> getBeerModel() {
-    return _beerRemoteDataSource.getBeerStream().map(
-          (dataList) => dataList.map(
-            (data) {
-              return BeerModel.fromMap(data);
-            },
-          ).toList(),
-        );
+    return _beerRemoteDataSource.getBeerStream();
   }
 
   Future<void> deleteItem(String id) async {
@@ -25,6 +19,6 @@ class BeerRepository {
   }
 
   Future<BeerModel> getBeerID(String id) async {
-   return await _beerRemoteDataSource.getBeerID(id);
+    return await _beerRemoteDataSource.getBeerID(id);
   }
 }
