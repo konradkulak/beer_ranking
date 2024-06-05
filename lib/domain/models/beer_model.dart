@@ -1,41 +1,32 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class BeerModel {
-  BeerModel({
-    required this.name,
-    required this.brewery,
-    required this.rating,
-    required this.date,
-    required this.imageURL,
-    required this.id,
-  });
+part 'beer_model.freezed.dart';
+part 'beer_model.g.dart';
 
-  final String name;
-  final String brewery;
-  final double rating;
-  final DateTime date;
-  final String imageURL;
-  final String id;
+DateTime timestampToDateTime(Timestamp timestamp) => timestamp.toDate();
+Timestamp dateTimeToTimestamp(DateTime date) => Timestamp.fromDate(date);
 
-  BeerModel.fromMap(Map<String, dynamic> map)
-      : name = map['name'] ?? 'Unknown',
-        brewery = map['brewery'] ?? 'Unknown',
-        rating = map['rating']?.toDouble() ?? 0.0,
-        date = map['date'],
-        imageURL = map['image_url'] ?? '',
-        id = map['id'] ?? '';
+@freezed
+class BeerModel with _$BeerModel {
+  const BeerModel._();
 
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-      'brewery': brewery,
-      'rating': rating,
-      'date': date,
-      'image_url': imageURL,
-    };
-  }
+  @JsonSerializable(explicitToJson: true)
+  factory BeerModel({
+    required String name,
+    required String brewery,
+    required double rating,
+    @JsonKey(fromJson: timestampToDateTime, toJson: dateTimeToTimestamp)
+    required DateTime date,
+    required String imageURL,
+    required String id,
+  }) = _BeerModel;
 
-  String dateFormatted() {
+  String get dateFormatted {
     return DateFormat.yMMMMEEEEd().format(date);
   }
+
+  factory BeerModel.fromJson(Map<String, dynamic> json) =>
+      _$BeerModelFromJson(json);
 }

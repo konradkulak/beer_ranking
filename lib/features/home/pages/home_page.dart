@@ -49,10 +49,7 @@ class HomePage extends StatelessWidget {
           Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: const EdgeInsets.only(
-                left: 30.0,
-                bottom: 30.0,
-              ),
+              padding: const EdgeInsets.only(left: 30.0, bottom: 30.0),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(
@@ -65,7 +62,7 @@ class HomePage extends StatelessWidget {
                 child: const Text('Beerpedia'),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -84,38 +81,28 @@ class _HomePageBody extends StatelessWidget {
         listener: (context, state) {
           if (state.deletionStatus == DeletionStatus.success) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Item deleted successfully'),
-              ),
+              const SnackBar(content: Text('Item deleted successfully')),
             );
           } else if (state.deletionStatus == DeletionStatus.error) {
             final errorMessage = state.errorMessage ?? 'Unknown error';
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(errorMessage),
-              ),
+              SnackBar(content: Text(errorMessage)),
             );
           }
         },
         builder: (context, state) {
           switch (state.status) {
             case Status.initial:
-              return const Center(
-                child: Text('Initial state'),
-              );
+              return const Center(child: Text('Initial state'));
             case Status.loading:
               return Scaffold(
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                body: const Center(
-                  child: CircularProgressIndicator(),
-                ),
+                body: const Center(child: CircularProgressIndicator()),
               );
             case Status.success:
               final items = state.items;
-              if (state.status == Status.success && items.isEmpty) {
-                return const Center(
-                  child: Text('Add your first beer'),
-                );
+              if (items.isEmpty) {
+                return const Center(child: Text('Add your first beer'));
               }
               return ListView(
                 padding: const EdgeInsets.all(8.0),
@@ -124,16 +111,12 @@ class _HomePageBody extends StatelessWidget {
                     Dismissible(
                       key: ValueKey(item.id),
                       background: const DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                        ),
+                        decoration: BoxDecoration(color: Colors.red),
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: Padding(
                             padding: EdgeInsets.only(right: 15.0),
-                            child: Icon(
-                              Icons.delete,
-                            ),
+                            child: Icon(Icons.delete),
                           ),
                         ),
                       ),
@@ -148,9 +131,7 @@ class _HomePageBody extends StatelessWidget {
                 ],
               );
             case Status.error:
-              return Center(
-                child: Text(state.errorMessage ?? 'Unknown error'),
-              );
+              return Center(child: Text(state.errorMessage ?? 'Unknown error'));
           }
         },
       ),
@@ -159,9 +140,7 @@ class _HomePageBody extends StatelessWidget {
 }
 
 class _ListItem extends StatelessWidget {
-  const _ListItem({
-    required this.item,
-  });
+  const _ListItem({required this.item});
 
   final BeerModel item;
 

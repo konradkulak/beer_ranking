@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class BeerRemoteDataSource {
-  Stream<List<Map<String, dynamic>>> getBeerStream() {
+  Stream<List<BeerModel>> getBeerStream() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
       throw Exception('User is not logged in');
@@ -14,16 +14,18 @@ class BeerRemoteDataSource {
         .collection('items')
         .orderBy('rating', descending: true)
         .snapshots()
-        .map((snapshot) {
-      return snapshot.docs.map((doc) {
-        Map<String, dynamic> data = doc.data();
-        data['date'] = data['date'] != null
-            ? (data['date'] as Timestamp).toDate()
-            : DateTime.now();
-        data['id'] = doc.id;
-        return data;
-      }).toList();
-    });
+        .map(
+      (snapshot) {
+        return snapshot.docs.map(
+          (doc) {
+            final data = doc.data();
+            data['id'] = doc.id;
+            final beer = BeerModel.fromJson(data);
+            return beer;
+          },
+        ).toList();
+      },
+    );
   }
 
   Future<void> deleteItem(String id) async {
@@ -39,9 +41,7 @@ class BeerRemoteDataSource {
           .doc(id)
           .delete();
     } catch (error) {
-      throw Exception(
-        'Failed to delete item: ${error.toString()}',
-      );
+      throw Exception('Failed to delete item: ${error.toString()}');
     }
   }
 
@@ -51,15 +51,15 @@ class BeerRemoteDataSource {
       throw Exception('User is not logged in');
     }
     try {
+      Map<String, dynamic> json = beer.toJson();
+      json['date'] = Timestamp.fromDate(beer.date);
       await FirebaseFirestore.instance
           .collection('users')
           .doc(userID)
           .collection('items')
-          .add(beer.toMap());
+          .add(json);
     } catch (error) {
-      throw Exception(
-        'Failed to add item: ${error.toString()}',
-      );
+      throw Exception('Failed to add item: ${error.toString()}');
     }
   }
 
@@ -76,12 +76,10 @@ class BeerRemoteDataSource {
           .doc(id)
           .get();
       if (doc.exists) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+        final data = doc.data() as Map<String, dynamic>;
         data['id'] = doc.id;
-        if (data['date'] is Timestamp) {
-          data['date'] = (data['date'] as Timestamp).toDate();
-        }
-        return BeerModel.fromMap(data);
+        final beer = BeerModel.fromJson(data);
+        return beer;
       } else {
         throw Exception('Beer not found');
       }
