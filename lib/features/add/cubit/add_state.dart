@@ -1,13 +1,13 @@
 part of 'add_cubit.dart';
 
-class AddState {
-  AddState({
-    this.beer,
-    this.addStatus,
-    this.errorMessage,
-  });
+@freezed
+class AddState with _$AddState {
+  const factory AddState({
+    BeerModel? beer,
+    AddStatus? addStatus,
+    String? errorMessage,
+  }) = _AddState;
 
-  final BeerModel? beer;
-  final AddStatus? addStatus;
-  final String? errorMessage;
+  factory AddState.fromJson(Map<String, dynamic> json) =>
+      _$AddStateFromJson(json);
 }
