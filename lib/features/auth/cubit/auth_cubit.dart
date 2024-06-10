@@ -3,8 +3,11 @@ import 'package:beer_ranking/domain/models/auth_model.dart';
 import 'package:beer_ranking/domain/repositories/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_state.dart';
+part 'auth_cubit.g.dart';
+part 'auth_cubit.freezed.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._authRepository) : super(AuthState());
@@ -15,7 +18,9 @@ class AuthCubit extends Cubit<AuthState> {
     if (!EmailValidator.validate(email)) {
       emit(
         AuthState(
-            authStatus: AuthStatus.error, errorMessage: 'Invalid email format'),
+          authStatus: AuthStatus.error,
+          errorMessage: 'Invalid email format',
+        ),
       );
       return;
     }

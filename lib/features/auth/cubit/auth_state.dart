@@ -1,12 +1,13 @@
 part of 'auth_cubit.dart';
 
-class AuthState {
-  AuthState({
-    this.authStatus,
-    this.authModel,
-    this.errorMessage,
-  });
-  final AuthStatus? authStatus;
-  final AuthModel? authModel;
-  final String? errorMessage;
+@freezed
+class AuthState with _$AuthState {
+  const factory AuthState({
+    AuthStatus? authStatus,
+    AuthModel? authModel,
+    String? errorMessage,
+  }) = _AuthState;
+
+  factory AuthState.fromJson(Map<String, dynamic> json) =>
+      _$AuthStateFromJson(json);
 }
