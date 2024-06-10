@@ -1,15 +1,14 @@
 part of 'info_cubit.dart';
 
-class InfoState {
-  InfoState({
-    this.beer,
-    this.infoStatus,
-    this.imageStatus = ImageStatus.valid,
-    this.errorMessage,
-  });
+@freezed
+class InfoState with _$InfoState {
+  const factory InfoState({
+    BeerModel? beer,
+    InfoStatus? infoStatus,
+    required ImageStatus imageStatus,
+    String? errorMessage,
+  }) = _InfoState;
 
-  final BeerModel? beer;
-  final InfoStatus? infoStatus;
-  final ImageStatus imageStatus;
-  final String? errorMessage;
+  factory InfoState.fromJson(Map<String, dynamic> json) =>
+      _$InfoStateFromJson(json);
 }

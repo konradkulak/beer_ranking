@@ -1,21 +1,28 @@
 import 'dart:convert';
-
 import 'package:beer_ranking/app/core/enums.dart';
 import 'package:beer_ranking/domain/models/beer_model.dart';
 import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'info_state.dart';
+part 'info_cubit.g.dart';
+part 'info_cubit.freezed.dart';
 
 class InfoCubit extends Cubit<InfoState> {
-  InfoCubit(this._beerRepository) : super(InfoState());
+  InfoCubit(this._beerRepository)
+      : super(
+          const InfoState(
+            imageStatus: ImageStatus.valid,
+          ),
+        );
 
   final BeerRepository _beerRepository;
 
   Future<void> getBeerID(String id) async {
     emit(
-      InfoState(
-        infoStatus: InfoStatus.loading,
+      const InfoState(
+        infoStatus: InfoStatus.loading, imageStatus: ImageStatus.valid,
       ),
     );
     try {
