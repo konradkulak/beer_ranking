@@ -1,15 +1,14 @@
 part of 'home_cubit.dart';
 
-class HomeState {
-  HomeState({
-    this.items = const [],
-    this.status = Status.initial,
-    this.deletionStatus,
-    this.errorMessage,
-  });
+@freezed
+class HomeState with _$HomeState {
+  const factory HomeState({
+    required List<BeerModel> items,
+    required Status status,
+    DeletionStatus? deletionStatus,
+    String? errorMessage,
+  }) = _HomeState;
 
-  final List<BeerModel> items;
-  final Status status;
-  final DeletionStatus? deletionStatus;
-  final String? errorMessage;
+  factory HomeState.fromJson(Map<String, dynamic> json) =>
+      _$HomeStateFromJson(json);
 }
