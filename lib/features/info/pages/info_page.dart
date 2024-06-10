@@ -123,9 +123,6 @@ class _BeerDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ImageStatus imageStatus =
-        context.select((InfoCubit cubit) => cubit.state.imageStatus);
-
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,7 +173,7 @@ class _BeerDetails extends StatelessWidget {
           ),
           _ImageDisplay(
             imageURL: beer.imageURL,
-            imageStatus: imageStatus,
+            imageStatus: ImageStatus.valid,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0),
@@ -206,9 +203,6 @@ class _ImageDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ImageStatus imageStatus =
-        context.select((InfoCubit cubit) => cubit.state.imageStatus);
-
     switch (imageStatus) {
       case ImageStatus.missing:
         return _buildEmptyImage();
