@@ -10,14 +10,14 @@ part 'auth_cubit.g.dart';
 part 'auth_cubit.freezed.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(this._authRepository) : super(AuthState());
+  AuthCubit(this._authRepository) : super(const AuthState());
 
   final AuthRepository _authRepository;
 
   Future<void> signIn(String email, String password) async {
     if (!EmailValidator.validate(email)) {
       emit(
-        AuthState(
+        const AuthState(
           authStatus: AuthStatus.error,
           errorMessage: 'Invalid email format',
         ),
@@ -26,14 +26,14 @@ class AuthCubit extends Cubit<AuthState> {
     }
     if (password.length < 6) {
       emit(
-        AuthState(
+        const AuthState(
             authStatus: AuthStatus.error,
             errorMessage: 'Password must be at least 6 characters'),
       );
       return;
     }
     emit(
-      AuthState(
+      const AuthState(
         authStatus: AuthStatus.loading,
       ),
     );
@@ -59,21 +59,21 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> register(String email, String password) async {
     if (!EmailValidator.validate(email)) {
       emit(
-        AuthState(
+        const AuthState(
             authStatus: AuthStatus.error, errorMessage: 'Invalid email format'),
       );
       return;
     }
     if (password.length < 6) {
       emit(
-        AuthState(
+        const AuthState(
             authStatus: AuthStatus.error,
             errorMessage: 'Password must be at least 6 characters'),
       );
       return;
     }
     emit(
-      AuthState(
+      const AuthState(
         authStatus: AuthStatus.loading,
       ),
     );
