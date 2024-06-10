@@ -1,12 +1,13 @@
 part of 'beerpedia_cubit.dart';
 
-class BeerpediaState {
-  BeerpediaState(
-      {this.beerpediaModel,
-      this.beerpediaStatus = BeerpediaStatus.initial,
-      this.errorMessage});
+@freezed
+class BeerpediaState with _$BeerpediaState {
+  const factory BeerpediaState({
+    BeerpediaModel? beerpediaModel,
+    BeerpediaStatus? beerpediaStatus,
+    String? errorMessage,
+  }) = _BeerpediaState;
 
-  final BeerpediaModel? beerpediaModel;
-  final BeerpediaStatus beerpediaStatus;
-  final String? errorMessage;
+  factory BeerpediaState.fromJson(Map<String, dynamic> json) =>
+      _$BeerpediaStateFromJson(json);
 }
