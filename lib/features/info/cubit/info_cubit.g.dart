@@ -12,8 +12,7 @@ _$InfoStateImpl _$$InfoStateImplFromJson(Map<String, dynamic> json) =>
           ? null
           : BeerModel.fromJson(json['beer'] as Map<String, dynamic>),
       infoStatus: $enumDecodeNullable(_$InfoStatusEnumMap, json['infoStatus']),
-      imageStatus:
-          $enumDecodeNullable(_$ImageStatusEnumMap, json['imageStatus']),
+      imageStatus: $enumDecode(_$ImageStatusEnumMap, json['imageStatus']),
       errorMessage: json['errorMessage'] as String?,
     );
 
@@ -21,7 +20,7 @@ Map<String, dynamic> _$$InfoStateImplToJson(_$InfoStateImpl instance) =>
     <String, dynamic>{
       'beer': instance.beer,
       'infoStatus': _$InfoStatusEnumMap[instance.infoStatus],
-      'imageStatus': _$ImageStatusEnumMap[instance.imageStatus],
+      'imageStatus': _$ImageStatusEnumMap[instance.imageStatus]!,
       'errorMessage': instance.errorMessage,
     };
 

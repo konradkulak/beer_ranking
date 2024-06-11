@@ -22,7 +22,7 @@ InfoState _$InfoStateFromJson(Map<String, dynamic> json) {
 mixin _$InfoState {
   BeerModel? get beer => throw _privateConstructorUsedError;
   InfoStatus? get infoStatus => throw _privateConstructorUsedError;
-  ImageStatus? get imageStatus => throw _privateConstructorUsedError;
+  ImageStatus get imageStatus => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $InfoStateCopyWith<$Res> {
   $Res call(
       {BeerModel? beer,
       InfoStatus? infoStatus,
-      ImageStatus? imageStatus,
+      ImageStatus imageStatus,
       String? errorMessage});
 
   $BeerModelCopyWith<$Res>? get beer;
@@ -60,7 +60,7 @@ class _$InfoStateCopyWithImpl<$Res, $Val extends InfoState>
   $Res call({
     Object? beer = freezed,
     Object? infoStatus = freezed,
-    Object? imageStatus = freezed,
+    Object? imageStatus = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -72,10 +72,10 @@ class _$InfoStateCopyWithImpl<$Res, $Val extends InfoState>
           ? _value.infoStatus
           : infoStatus // ignore: cast_nullable_to_non_nullable
               as InfoStatus?,
-      imageStatus: freezed == imageStatus
+      imageStatus: null == imageStatus
           ? _value.imageStatus
           : imageStatus // ignore: cast_nullable_to_non_nullable
-              as ImageStatus?,
+              as ImageStatus,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -107,7 +107,7 @@ abstract class _$$InfoStateImplCopyWith<$Res>
   $Res call(
       {BeerModel? beer,
       InfoStatus? infoStatus,
-      ImageStatus? imageStatus,
+      ImageStatus imageStatus,
       String? errorMessage});
 
   @override
@@ -127,7 +127,7 @@ class __$$InfoStateImplCopyWithImpl<$Res>
   $Res call({
     Object? beer = freezed,
     Object? infoStatus = freezed,
-    Object? imageStatus = freezed,
+    Object? imageStatus = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_$InfoStateImpl(
@@ -139,10 +139,10 @@ class __$$InfoStateImplCopyWithImpl<$Res>
           ? _value.infoStatus
           : infoStatus // ignore: cast_nullable_to_non_nullable
               as InfoStatus?,
-      imageStatus: freezed == imageStatus
+      imageStatus: null == imageStatus
           ? _value.imageStatus
           : imageStatus // ignore: cast_nullable_to_non_nullable
-              as ImageStatus?,
+              as ImageStatus,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -155,7 +155,10 @@ class __$$InfoStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InfoStateImpl implements _InfoState {
   const _$InfoStateImpl(
-      {this.beer, this.infoStatus, this.imageStatus, this.errorMessage});
+      {this.beer,
+      this.infoStatus,
+      required this.imageStatus,
+      this.errorMessage});
 
   factory _$InfoStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$InfoStateImplFromJson(json);
@@ -165,7 +168,7 @@ class _$InfoStateImpl implements _InfoState {
   @override
   final InfoStatus? infoStatus;
   @override
-  final ImageStatus? imageStatus;
+  final ImageStatus imageStatus;
   @override
   final String? errorMessage;
 
@@ -211,7 +214,7 @@ abstract class _InfoState implements InfoState {
   const factory _InfoState(
       {final BeerModel? beer,
       final InfoStatus? infoStatus,
-      final ImageStatus? imageStatus,
+      required final ImageStatus imageStatus,
       final String? errorMessage}) = _$InfoStateImpl;
 
   factory _InfoState.fromJson(Map<String, dynamic> json) =
@@ -222,7 +225,7 @@ abstract class _InfoState implements InfoState {
   @override
   InfoStatus? get infoStatus;
   @override
-  ImageStatus? get imageStatus;
+  ImageStatus get imageStatus;
   @override
   String? get errorMessage;
   @override

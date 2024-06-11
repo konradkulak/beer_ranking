@@ -1,11 +1,12 @@
 part of 'user_cubit.dart';
 
-class UserState {
-  UserState({
-    this.userStatus = UserStatus.initial,
-    this.errorMessage,
-  });
+@freezed
+class UserState with _$UserState {
+  const factory UserState({
+    required UserStatus userStatus,
+    String? errorMessage,
+  }) = _UserState;
 
-  final UserStatus userStatus;
-  final String? errorMessage;
+  factory UserState.fromJson(Map<String, dynamic> json) =>
+      _$UserStateFromJson(json);
 }
