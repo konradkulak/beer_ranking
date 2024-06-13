@@ -47,4 +47,10 @@ class BeerpediaCubit extends Cubit<BeerpediaState> {
       );
     }
   }
+
+  void updateButtonState(String text) {
+    emit(
+      state.copyWith(isButtonEnabled: text.isNotEmpty),
+    );
+  }
 }
