@@ -15,6 +15,7 @@ _$BeerpediaStateImpl _$$BeerpediaStateImplFromJson(Map<String, dynamic> json) =>
       beerpediaStatus: $enumDecodeNullable(
           _$BeerpediaStatusEnumMap, json['beerpediaStatus']),
       errorMessage: json['errorMessage'] as String?,
+      isButtonEnabled: json['isButtonEnabled'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$BeerpediaStateImplToJson(
@@ -23,6 +24,7 @@ Map<String, dynamic> _$$BeerpediaStateImplToJson(
       'beerpediaModel': instance.beerpediaModel,
       'beerpediaStatus': _$BeerpediaStatusEnumMap[instance.beerpediaStatus],
       'errorMessage': instance.errorMessage,
+      'isButtonEnabled': instance.isButtonEnabled,
     };
 
 const _$BeerpediaStatusEnumMap = {

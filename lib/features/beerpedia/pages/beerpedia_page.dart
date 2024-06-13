@@ -105,6 +105,9 @@ class _BeerpediaContent extends StatelessWidget {
               const SizedBox(height: 10.0),
               TextField(
                 controller: _controller,
+                onChanged: (text) {
+                  context.read<BeerpediaCubit>().updateButtonState(text);
+                },
                 decoration: InputDecoration(
                   labelText: 'Enter beer name',
                   border: OutlineInputBorder(
@@ -119,11 +122,28 @@ class _BeerpediaContent extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {
-                  context
-                      .read<BeerpediaCubit>()
-                      .getBeerpediaModel(title: _controller.text);
-                },
+                onPressed: state.isButtonEnabled
+                    ? () {
+                        context
+                            .read<BeerpediaCubit>()
+                            .getBeerpediaModel(title: _controller.text);
+                      }
+                    : null,
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      if (!state.isButtonEnabled) {
+                        return Colors.brown.withOpacity(0.5);
+                      }
+                      return Theme.of(context)
+                              .elevatedButtonTheme
+                              .style
+                              ?.backgroundColor
+                              ?.resolve(states) ??
+                          Colors.brown;
+                    },
+                  ),
+                ),
                 child: const Text('Search'),
               ),
             ],
