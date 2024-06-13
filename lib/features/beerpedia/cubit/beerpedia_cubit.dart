@@ -24,11 +24,20 @@ class BeerpediaCubit extends Cubit<BeerpediaState> {
     try {
       final beerpediaModel =
           await _beerpediaRepository.getBeerpediaModel(title: title);
-      emit(
-        BeerpediaState(
-            beerpediaModel: beerpediaModel,
-            beerpediaStatus: BeerpediaStatus.success),
-      );
+      if (beerpediaModel != null) {
+        emit(
+          BeerpediaState(
+              beerpediaModel: beerpediaModel,
+              beerpediaStatus: BeerpediaStatus.success),
+        );
+      } else {
+        emit(
+          const BeerpediaState(
+            beerpediaStatus: BeerpediaStatus.error,
+            errorMessage: 'No matching data found',
+          ),
+        );
+      }
     } catch (error) {
       emit(
         BeerpediaState(

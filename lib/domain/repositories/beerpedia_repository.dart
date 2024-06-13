@@ -9,17 +9,22 @@ class BeerpediaRepository {
   Future<BeerpediaModel?> getBeerpediaModel({
     required String title,
   }) async {
-    final json = await _beerpediaRemoteDataSource.getBeerpediaData(title);
-
-    if (json == null) {
+    try {
+      final data = await _beerpediaRemoteDataSource.getBeerpediaData(title);
+      if (data.isEmpty) {
+        return null;
+      }
+      var filteredData = data
+          .where(
+              (element) => element.title.toLowerCase() == title.toLowerCase())
+          .toList();
+      if (filteredData.isNotEmpty) {
+        return filteredData.first;
+      } else {
+        return null;
+      }
+    } catch (error) {
       return null;
     }
-    Map<String, dynamic> data;
-    if (json.isNotEmpty) {
-      data = json.first as Map<String, dynamic>;
-    } else {
-      return null;
-    }
-    return BeerpediaModel.fromJson(data);
   }
 }

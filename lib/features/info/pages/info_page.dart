@@ -173,7 +173,7 @@ class _BeerDetails extends StatelessWidget {
           ),
           _ImageDisplay(
             imageURL: beer.imageURL,
-            imageStatus: ImageStatus.valid,
+            imageStatus: context.read<InfoCubit>().state.imageStatus,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0),

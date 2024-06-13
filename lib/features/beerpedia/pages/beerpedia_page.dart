@@ -13,11 +13,12 @@ class BeerpediaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BeerpediaCubit(
-        BeerpediaRepository(
-          BeerpediaRemoteDataSource(),
-        ),
-      ),
+      create: (context) {
+        final beerpediaRemoteDataSource = createBeerpediaRemoteDataSource();
+        final beerpediaRepository =
+            BeerpediaRepository(beerpediaRemoteDataSource);
+        return BeerpediaCubit(beerpediaRepository);
+      },
       child: BlocConsumer<BeerpediaCubit, BeerpediaState>(
         listener: (context, state) {
           if (state.beerpediaStatus == BeerpediaStatus.error) {
@@ -113,7 +114,7 @@ class _BeerpediaContent extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                'Having troubles finding your a beer you like? Try Weiss',
+                'Having troubles finding a beer you like? Try Weiss',
                 style: Theme.of(context).textTheme.labelSmall,
               ),
               const SizedBox(height: 10),

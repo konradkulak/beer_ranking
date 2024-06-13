@@ -22,7 +22,8 @@ class InfoCubit extends Cubit<InfoState> {
   Future<void> getBeerID(String id) async {
     emit(
       const InfoState(
-        infoStatus: InfoStatus.loading, imageStatus: ImageStatus.valid,
+        infoStatus: InfoStatus.loading,
+        imageStatus: ImageStatus.valid,
       ),
     );
     try {
@@ -42,6 +43,8 @@ class InfoCubit extends Cubit<InfoState> {
               Uri.parse(beer.imageURL);
               imageStatus = ImageStatus.valid;
             }
+          } else {
+            Uri.parse(beer.imageURL);
           }
         } catch (error) {
           imageStatus = ImageStatus.malformed;
