@@ -23,6 +23,7 @@ mixin _$BeerpediaState {
   BeerpediaModel? get beerpediaModel => throw _privateConstructorUsedError;
   BeerpediaStatus? get beerpediaStatus => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
+  bool get isButtonEnabled => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +40,8 @@ abstract class $BeerpediaStateCopyWith<$Res> {
   $Res call(
       {BeerpediaModel? beerpediaModel,
       BeerpediaStatus? beerpediaStatus,
-      String? errorMessage});
+      String? errorMessage,
+      bool isButtonEnabled});
 
   $BeerpediaModelCopyWith<$Res>? get beerpediaModel;
 }
@@ -60,6 +62,7 @@ class _$BeerpediaStateCopyWithImpl<$Res, $Val extends BeerpediaState>
     Object? beerpediaModel = freezed,
     Object? beerpediaStatus = freezed,
     Object? errorMessage = freezed,
+    Object? isButtonEnabled = null,
   }) {
     return _then(_value.copyWith(
       beerpediaModel: freezed == beerpediaModel
@@ -74,6 +77,10 @@ class _$BeerpediaStateCopyWithImpl<$Res, $Val extends BeerpediaState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      isButtonEnabled: null == isButtonEnabled
+          ? _value.isButtonEnabled
+          : isButtonEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -101,7 +108,8 @@ abstract class _$$BeerpediaStateImplCopyWith<$Res>
   $Res call(
       {BeerpediaModel? beerpediaModel,
       BeerpediaStatus? beerpediaStatus,
-      String? errorMessage});
+      String? errorMessage,
+      bool isButtonEnabled});
 
   @override
   $BeerpediaModelCopyWith<$Res>? get beerpediaModel;
@@ -121,6 +129,7 @@ class __$$BeerpediaStateImplCopyWithImpl<$Res>
     Object? beerpediaModel = freezed,
     Object? beerpediaStatus = freezed,
     Object? errorMessage = freezed,
+    Object? isButtonEnabled = null,
   }) {
     return _then(_$BeerpediaStateImpl(
       beerpediaModel: freezed == beerpediaModel
@@ -135,6 +144,10 @@ class __$$BeerpediaStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      isButtonEnabled: null == isButtonEnabled
+          ? _value.isButtonEnabled
+          : isButtonEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -143,7 +156,10 @@ class __$$BeerpediaStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BeerpediaStateImpl implements _BeerpediaState {
   const _$BeerpediaStateImpl(
-      {this.beerpediaModel, this.beerpediaStatus, this.errorMessage});
+      {this.beerpediaModel,
+      this.beerpediaStatus,
+      this.errorMessage,
+      this.isButtonEnabled = false});
 
   factory _$BeerpediaStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$BeerpediaStateImplFromJson(json);
@@ -154,10 +170,13 @@ class _$BeerpediaStateImpl implements _BeerpediaState {
   final BeerpediaStatus? beerpediaStatus;
   @override
   final String? errorMessage;
+  @override
+  @JsonKey()
+  final bool isButtonEnabled;
 
   @override
   String toString() {
-    return 'BeerpediaState(beerpediaModel: $beerpediaModel, beerpediaStatus: $beerpediaStatus, errorMessage: $errorMessage)';
+    return 'BeerpediaState(beerpediaModel: $beerpediaModel, beerpediaStatus: $beerpediaStatus, errorMessage: $errorMessage, isButtonEnabled: $isButtonEnabled)';
   }
 
   @override
@@ -170,13 +189,15 @@ class _$BeerpediaStateImpl implements _BeerpediaState {
             (identical(other.beerpediaStatus, beerpediaStatus) ||
                 other.beerpediaStatus == beerpediaStatus) &&
             (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+                other.errorMessage == errorMessage) &&
+            (identical(other.isButtonEnabled, isButtonEnabled) ||
+                other.isButtonEnabled == isButtonEnabled));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, beerpediaModel, beerpediaStatus, errorMessage);
+  int get hashCode => Object.hash(runtimeType, beerpediaModel, beerpediaStatus,
+      errorMessage, isButtonEnabled);
 
   @JsonKey(ignore: true)
   @override
@@ -197,7 +218,8 @@ abstract class _BeerpediaState implements BeerpediaState {
   const factory _BeerpediaState(
       {final BeerpediaModel? beerpediaModel,
       final BeerpediaStatus? beerpediaStatus,
-      final String? errorMessage}) = _$BeerpediaStateImpl;
+      final String? errorMessage,
+      final bool isButtonEnabled}) = _$BeerpediaStateImpl;
 
   factory _BeerpediaState.fromJson(Map<String, dynamic> json) =
       _$BeerpediaStateImpl.fromJson;
@@ -208,6 +230,8 @@ abstract class _BeerpediaState implements BeerpediaState {
   BeerpediaStatus? get beerpediaStatus;
   @override
   String? get errorMessage;
+  @override
+  bool get isButtonEnabled;
   @override
   @JsonKey(ignore: true)
   _$$BeerpediaStateImplCopyWith<_$BeerpediaStateImpl> get copyWith =>
