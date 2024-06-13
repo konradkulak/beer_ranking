@@ -1,7 +1,6 @@
 import 'package:beer_ranking/app/core/enums.dart';
-import 'package:beer_ranking/data/remote_data_source/beer_remote_data_source.dart';
+import 'package:beer_ranking/app/core/injection_container.dart';
 import 'package:beer_ranking/domain/models/beer_model.dart';
-import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/cubit/add_cubit.dart';
 import 'package:beer_ranking/features/user/pages/user_page.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +13,7 @@ class AddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddCubit(
-        BeerRepository(
-          BeerRemoteDataSource(),
-        ),
-      ),
+      create: (context) => getIt<AddCubit>(),
       child: BlocConsumer<AddCubit, AddState>(
         listener: (context, state) {
           if (state.addStatus == AddStatus.success) {
