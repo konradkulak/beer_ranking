@@ -1,6 +1,5 @@
 import 'package:beer_ranking/domain/models/beerpedia_model.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'beerpedia_remote_data_source.g.dart';
@@ -12,26 +11,6 @@ abstract class BeerpediaRemoteDataSource {
 
   @GET('/beers')
   Future<List<BeerpediaModel>> getBeerpediaData(@Query('title') String title);
-}
-
-BeerpediaRemoteDataSource createBeerpediaRemoteDataSource() {
-  String? apiHost = dotenv.env['API_HOST'];
-  String? apiKey = dotenv.env['API_KEY'];
-
-  if (apiHost == null || apiKey == null) {
-    throw Exception('API_HOST or API_KEY is not set in .env file');
-  }
-
-  final dio = Dio(
-    BaseOptions(
-      baseUrl: 'https://$apiHost',
-      headers: {
-        'API-Key': apiKey,
-      },
-    ),
-  );
-
-  return BeerpediaRemoteDataSource(dio);
 }
 
 class BeerpediaService {
