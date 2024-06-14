@@ -5,6 +5,7 @@ import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/cubit/add_cubit.dart';
 import 'package:beer_ranking/features/auth/cubit/auth_cubit.dart';
 import 'package:beer_ranking/features/home/cubit/home_cubit.dart';
+import 'package:beer_ranking/features/info/cubit/info_cubit.dart';
 import 'package:beer_ranking/features/user/cubit/user_cubit.dart';
 import 'package:get_it/get_it.dart';
 
@@ -22,6 +23,7 @@ void configureDependencies() {
   //Bloc
   getIt.registerFactory(() => AddCubit(getIt<BeerRepository>()));
   getIt.registerFactory(() => HomeCubit(getIt<BeerRepository>()));
+  getIt.registerFactory(() => InfoCubit(getIt<BeerRepository>()));
 
   getIt.registerFactory(() => AuthCubit(getIt<AuthRepository>()));
   getIt.registerFactory(() => UserCubit(getIt<AuthRepository>()));

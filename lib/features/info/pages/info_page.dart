@@ -1,9 +1,8 @@
 import 'dart:convert';
 
 import 'package:beer_ranking/app/core/enums.dart';
-import 'package:beer_ranking/data/remote_data_source/beer_remote_data_source.dart';
+import 'package:beer_ranking/app/core/injection_container.dart';
 import 'package:beer_ranking/domain/models/beer_model.dart';
-import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:beer_ranking/features/add/pages/add_page.dart';
 import 'package:beer_ranking/features/beerpedia/pages/beerpedia_page.dart';
 import 'package:beer_ranking/features/info/cubit/info_cubit.dart';
@@ -85,8 +84,7 @@ class _InfoPageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          InfoCubit(BeerRepository(BeerRemoteDataSource()))..getBeerID(beerID),
+      create: (context) => getIt<InfoCubit>()..getBeerID(beerID),
       child: BlocBuilder<InfoCubit, InfoState>(
         builder: (context, state) {
           switch (state.infoStatus) {
