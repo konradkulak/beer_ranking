@@ -1,7 +1,6 @@
 import 'package:beer_ranking/app/core/enums.dart';
-import 'package:beer_ranking/data/remote_data_source/beerpedia_remote_data_source.dart';
+import 'package:beer_ranking/app/core/injection_container.dart';
 import 'package:beer_ranking/domain/models/beerpedia_model.dart';
-import 'package:beer_ranking/domain/repositories/beerpedia_repository.dart';
 import 'package:beer_ranking/features/beerpedia/cubit/beerpedia_cubit.dart';
 import 'package:beer_ranking/features/user/pages/user_page.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +12,7 @@ class BeerpediaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) {
-        final beerpediaRemoteDataSource = createBeerpediaRemoteDataSource();
-        final beerpediaRepository =
-            BeerpediaRepository(beerpediaRemoteDataSource);
-        return BeerpediaCubit(beerpediaRepository);
-      },
+      create: (context) => getIt<BeerpediaCubit>(),
       child: BlocConsumer<BeerpediaCubit, BeerpediaState>(
         listener: (context, state) {
           if (state.beerpediaStatus == BeerpediaStatus.error) {
