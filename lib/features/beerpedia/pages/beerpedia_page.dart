@@ -130,8 +130,8 @@ class _BeerpediaContent extends StatelessWidget {
                       }
                     : null,
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                    (Set<MaterialState> states) {
+                  backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                    (Set<WidgetState> states) {
                       if (!state.isButtonEnabled) {
                         return Colors.brown.withOpacity(0.5);
                       }
