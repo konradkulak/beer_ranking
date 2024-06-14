@@ -91,9 +91,9 @@ class MyApp extends StatelessWidget {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.brown),
-            foregroundColor: MaterialStateProperty.all(Colors.white),
-            textStyle: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(Colors.brown),
+            foregroundColor: WidgetStateProperty.all(Colors.white),
+            textStyle: WidgetStateProperty.all(
               GoogleFonts.raleway(
                 textStyle: const TextStyle(
                   fontSize: 20.0,
@@ -102,26 +102,26 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            shape: MaterialStateProperty.all(
+            shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16.0),
               ),
             ),
-            elevation: MaterialStateProperty.all(10.0),
+            elevation: WidgetStateProperty.all(10.0),
           ),
         ),
         iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
-            iconColor: MaterialStateProperty.all(
+            iconColor: WidgetStateProperty.all(
               Colors.brown,
             ),
           ),
         ),
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.transparent),
-            foregroundColor: MaterialStateProperty.all(Colors.brown),
-            textStyle: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(Colors.transparent),
+            foregroundColor: WidgetStateProperty.all(Colors.brown),
+            textStyle: WidgetStateProperty.all(
               GoogleFonts.raleway(
                 textStyle: const TextStyle(
                   fontSize: 16.0,
