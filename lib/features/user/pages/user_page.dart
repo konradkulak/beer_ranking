@@ -1,6 +1,5 @@
 import 'package:beer_ranking/app/core/enums.dart';
-import 'package:beer_ranking/data/remote_data_source/auth_remote_data_source.dart';
-import 'package:beer_ranking/domain/repositories/auth_repository.dart';
+import 'package:beer_ranking/app/core/injection_container.dart';
 import 'package:beer_ranking/features/auth/pages/auth_page.dart';
 import 'package:beer_ranking/features/user/cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +11,7 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UserCubit(
-        AuthRepository(
-          AuthRemoteDataSource(),
-        ),
-      ),
+      create: (context) => getIt<UserCubit>(),
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) {
           if (state.userStatus == UserStatus.error) {
