@@ -1,6 +1,8 @@
 import 'package:beer_ranking/domain/models/auth_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class AuthRemoteDataSource {
   AuthRemoteDataSource();
 
