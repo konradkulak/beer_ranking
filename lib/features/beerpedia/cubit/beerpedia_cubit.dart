@@ -3,11 +3,13 @@ import 'package:beer_ranking/domain/models/beerpedia_model.dart';
 import 'package:beer_ranking/domain/repositories/beerpedia_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'beerpedia_state.dart';
 part 'beerpedia_cubit.g.dart';
 part 'beerpedia_cubit.freezed.dart';
 
+@injectable
 class BeerpediaCubit extends Cubit<BeerpediaState> {
   BeerpediaCubit(this._beerpediaRepository) : super(const BeerpediaState());
 

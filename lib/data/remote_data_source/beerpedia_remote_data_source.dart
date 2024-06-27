@@ -1,12 +1,15 @@
 import 'package:beer_ranking/domain/models/beerpedia_model.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'beerpedia_remote_data_source.g.dart';
 
-@RestApi(baseUrl: '')
+@injectable
+@RestApi()
 abstract class BeerpediaRemoteDataSource {
-  factory BeerpediaRemoteDataSource(Dio dio, {String baseUrl}) =
+  @factoryMethod
+  factory BeerpediaRemoteDataSource(Dio dio) =
       _BeerpediaRemoteDataSource;
 
   @GET('/beers')

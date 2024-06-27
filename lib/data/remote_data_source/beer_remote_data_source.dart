@@ -1,7 +1,9 @@
 import 'package:beer_ranking/domain/models/beer_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class BeerRemoteDataSource {
   Stream<List<BeerModel>> getBeerStream() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
