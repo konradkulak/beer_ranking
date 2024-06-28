@@ -4,13 +4,11 @@ import 'package:beer_ranking/domain/models/beer_model.dart';
 import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 
 part 'home_state.dart';
 part 'home_cubit.g.dart';
 part 'home_cubit.freezed.dart';
 
-@injectable
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._beerRepository)
       : super(const HomeState(items: [], status: Status.initial));

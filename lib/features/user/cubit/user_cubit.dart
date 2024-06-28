@@ -2,13 +2,11 @@ import 'package:beer_ranking/app/core/enums.dart';
 import 'package:beer_ranking/domain/repositories/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 
 part 'user_state.dart';
 part 'user_cubit.g.dart';
 part 'user_cubit.freezed.dart';
 
-@injectable
 class UserCubit extends Cubit<UserState> {
   UserCubit(this._authRepository)
       : super(

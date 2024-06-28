@@ -4,13 +4,11 @@ import 'package:beer_ranking/domain/repositories/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 
 part 'auth_state.dart';
 part 'auth_cubit.g.dart';
 part 'auth_cubit.freezed.dart';
 
-@injectable
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._authRepository) : super(const AuthState());
 
