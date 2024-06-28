@@ -1,8 +1,6 @@
 import 'package:beer_ranking/data/remote_data_source/beer_remote_data_source.dart';
 import 'package:beer_ranking/domain/models/beer_model.dart';
-import 'package:injectable/injectable.dart';
 
-@injectable
 class BeerRepository {
   BeerRepository(this._beerRemoteDataSource);
 

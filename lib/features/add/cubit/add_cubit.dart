@@ -3,13 +3,11 @@ import 'package:beer_ranking/domain/models/beer_model.dart';
 import 'package:beer_ranking/domain/repositories/beer_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 
 part 'add_state.dart';
 part 'add_cubit.g.dart';
 part 'add_cubit.freezed.dart';
 
-@injectable
 class AddCubit extends Cubit<AddState> {
   AddCubit(this._beerRepository) : super(const AddState());
 
