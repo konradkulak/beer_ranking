@@ -9,9 +9,9 @@ part 'add_cubit.g.dart';
 part 'add_cubit.freezed.dart';
 
 class AddCubit extends Cubit<AddState> {
-  AddCubit(this._beerRepository) : super(const AddState());
+  AddCubit({required this.beerRepository}) : super(const AddState());
 
-  final BeerRepository _beerRepository;
+  final BeerRepository beerRepository;
 
   Future<void> addItem(BeerModel beer) async {
     emit(
@@ -20,7 +20,7 @@ class AddCubit extends Cubit<AddState> {
       ),
     );
     try {
-      await _beerRepository.addItem(beer);
+      await beerRepository.addItem(beer);
       emit(
         const AddState(
           addStatus: AddStatus.success,
