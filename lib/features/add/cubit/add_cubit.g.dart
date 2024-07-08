@@ -11,18 +11,20 @@ _$AddStateImpl _$$AddStateImplFromJson(Map<String, dynamic> json) =>
       beer: json['beer'] == null
           ? null
           : BeerModel.fromJson(json['beer'] as Map<String, dynamic>),
-      addStatus: $enumDecodeNullable(_$AddStatusEnumMap, json['addStatus']),
+      addStatus: $enumDecodeNullable(_$AddStatusEnumMap, json['addStatus']) ??
+          AddStatus.initial,
       errorMessage: json['errorMessage'] as String?,
     );
 
 Map<String, dynamic> _$$AddStateImplToJson(_$AddStateImpl instance) =>
     <String, dynamic>{
       'beer': instance.beer,
-      'addStatus': _$AddStatusEnumMap[instance.addStatus],
+      'addStatus': _$AddStatusEnumMap[instance.addStatus]!,
       'errorMessage': instance.errorMessage,
     };
 
 const _$AddStatusEnumMap = {
+  AddStatus.initial: 'initial',
   AddStatus.loading: 'loading',
   AddStatus.success: 'success',
   AddStatus.error: 'error',

@@ -21,7 +21,7 @@ AddState _$AddStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AddState {
   BeerModel? get beer => throw _privateConstructorUsedError;
-  AddStatus? get addStatus => throw _privateConstructorUsedError;
+  AddStatus get addStatus => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $AddStateCopyWith<$Res> {
   factory $AddStateCopyWith(AddState value, $Res Function(AddState) then) =
       _$AddStateCopyWithImpl<$Res, AddState>;
   @useResult
-  $Res call({BeerModel? beer, AddStatus? addStatus, String? errorMessage});
+  $Res call({BeerModel? beer, AddStatus addStatus, String? errorMessage});
 
   $BeerModelCopyWith<$Res>? get beer;
 }
@@ -54,7 +54,7 @@ class _$AddStateCopyWithImpl<$Res, $Val extends AddState>
   @override
   $Res call({
     Object? beer = freezed,
-    Object? addStatus = freezed,
+    Object? addStatus = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -62,10 +62,10 @@ class _$AddStateCopyWithImpl<$Res, $Val extends AddState>
           ? _value.beer
           : beer // ignore: cast_nullable_to_non_nullable
               as BeerModel?,
-      addStatus: freezed == addStatus
+      addStatus: null == addStatus
           ? _value.addStatus
           : addStatus // ignore: cast_nullable_to_non_nullable
-              as AddStatus?,
+              as AddStatus,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -94,7 +94,7 @@ abstract class _$$AddStateImplCopyWith<$Res>
       __$$AddStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BeerModel? beer, AddStatus? addStatus, String? errorMessage});
+  $Res call({BeerModel? beer, AddStatus addStatus, String? errorMessage});
 
   @override
   $BeerModelCopyWith<$Res>? get beer;
@@ -112,7 +112,7 @@ class __$$AddStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? beer = freezed,
-    Object? addStatus = freezed,
+    Object? addStatus = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_$AddStateImpl(
@@ -120,10 +120,10 @@ class __$$AddStateImplCopyWithImpl<$Res>
           ? _value.beer
           : beer // ignore: cast_nullable_to_non_nullable
               as BeerModel?,
-      addStatus: freezed == addStatus
+      addStatus: null == addStatus
           ? _value.addStatus
           : addStatus // ignore: cast_nullable_to_non_nullable
-              as AddStatus?,
+              as AddStatus,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -135,7 +135,8 @@ class __$$AddStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AddStateImpl implements _AddState {
-  const _$AddStateImpl({this.beer, this.addStatus, this.errorMessage});
+  const _$AddStateImpl(
+      {this.beer, this.addStatus = AddStatus.initial, this.errorMessage});
 
   factory _$AddStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddStateImplFromJson(json);
@@ -143,7 +144,8 @@ class _$AddStateImpl implements _AddState {
   @override
   final BeerModel? beer;
   @override
-  final AddStatus? addStatus;
+  @JsonKey()
+  final AddStatus addStatus;
   @override
   final String? errorMessage;
 
@@ -185,7 +187,7 @@ class _$AddStateImpl implements _AddState {
 abstract class _AddState implements AddState {
   const factory _AddState(
       {final BeerModel? beer,
-      final AddStatus? addStatus,
+      final AddStatus addStatus,
       final String? errorMessage}) = _$AddStateImpl;
 
   factory _AddState.fromJson(Map<String, dynamic> json) =
@@ -194,7 +196,7 @@ abstract class _AddState implements AddState {
   @override
   BeerModel? get beer;
   @override
-  AddStatus? get addStatus;
+  AddStatus get addStatus;
   @override
   String? get errorMessage;
   @override

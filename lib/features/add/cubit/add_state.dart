@@ -4,7 +4,7 @@ part of 'add_cubit.dart';
 class AddState with _$AddState {
   const factory AddState({
     BeerModel? beer,
-    AddStatus? addStatus,
+    @Default(AddStatus.initial) AddStatus addStatus,
     String? errorMessage,
   }) = _AddState;
 
