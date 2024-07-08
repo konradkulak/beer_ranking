@@ -54,7 +54,8 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i8.HomeCubit>(() => _i8.HomeCubit(gh<_i6.BeerRepository>()));
     gh.factory<_i9.InfoCubit>(() => _i9.InfoCubit(gh<_i6.BeerRepository>()));
-    gh.factory<_i10.AddCubit>(() => _i10.AddCubit(gh<_i6.BeerRepository>()));
+    gh.factory<_i10.AddCubit>(
+        () => _i10.AddCubit(beerRepository: gh<_i6.BeerRepository>()));
     gh.factory<_i11.BeerpediaRemoteDataSource>(
         () => _i11.BeerpediaRemoteDataSource(gh<_i7.Dio>()));
     gh.factory<_i12.AuthCubit>(() => _i12.AuthCubit(gh<_i5.AuthRepository>()));
